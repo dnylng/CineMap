@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Neou.otf">
+            <string>Neou-Thin</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Sign InVC-->
         <scene sceneID="tne-QT-ifu">
@@ -18,13 +24,45 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Wallpaper" translatesAutoresizingMaskIntoConstraints="NO" id="cym-52-aqJ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CineMap Icon Dark" translatesAutoresizingMaskIntoConstraints="NO" id="rjM-5Q-CDy">
+                                <rect key="frame" x="145" y="60" width="125" height="150"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cine Map" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uuo-kB-5qn">
+                                <rect key="frame" x="31" y="218" width="352" height="77"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="uuo-kB-5qn" secondAttribute="height" multiplier="32:7" id="TZ9-nh-6tJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Neou-Thin" family="Neou" pointSize="64"/>
+                                <color key="textColor" red="0.99767130609999999" green="0.9571499228" blue="0.95634573700000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="cym-52-aqJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="04Z-St-hAH"/>
+                            <constraint firstItem="uuo-kB-5qn" firstAttribute="top" secondItem="rjM-5Q-CDy" secondAttribute="bottom" constant="8" id="6WG-tv-EyO"/>
+                            <constraint firstItem="uuo-kB-5qn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="J9p-SK-cAe"/>
+                            <constraint firstItem="cym-52-aqJ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="OAX-dY-qMl"/>
+                            <constraint firstItem="rjM-5Q-CDy" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OTf-Jq-qnh"/>
+                            <constraint firstItem="rjM-5Q-CDy" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="WNS-Br-rMj"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="cym-52-aqJ" secondAttribute="bottom" id="ppb-bM-DUZ"/>
+                            <constraint firstAttribute="trailing" secondItem="cym-52-aqJ" secondAttribute="trailing" id="wso-3H-QuD"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="24.637681159420293" y="37.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CineMap Icon Dark" width="125" height="150"/>
+        <image name="Wallpaper" width="414" height="736"/>
+    </resources>
 </document>
