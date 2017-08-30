@@ -126,6 +126,12 @@ class SignInVC: UIViewController, UITextFieldDelegate {
                        animations: { self.view.layoutIfNeeded() },
                        completion: nil)
     }
+    
+    @IBAction func toSignUp(_ sender: Any) {
+//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        performSegue(withIdentifier: "toSignUp", sender: self)
+    }
 
 }
 
