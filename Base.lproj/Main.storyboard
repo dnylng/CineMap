@@ -40,7 +40,7 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="CineMap Icon Dark" translatesAutoresizingMaskIntoConstraints="NO" id="rjM-5Q-CDy">
                                                 <rect key="frame" x="0.0" y="0.0" width="312" height="150"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="150" id="6c9-QN-q6d"/>
+                                                    <constraint firstAttribute="height" constant="150" id="WmO-b0-crO"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cine Map" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="24" translatesAutoresizingMaskIntoConstraints="NO" id="gsl-Wi-vlo">
@@ -133,7 +133,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="iconHeight" destination="6c9-QN-q6d" id="vtk-70-P1a"/>
+                        <outlet property="iconHeight" destination="WmO-b0-crO" id="Qzh-74-sEp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
