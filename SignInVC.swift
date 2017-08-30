@@ -18,6 +18,7 @@ class SignInVC: UIViewController, UITextFieldDelegate {
 
     
     var originalTopConstraint: CGFloat!
+    var activeField: UITextField?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,7 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         
         emailField.delegate = self
         passField.delegate = self
+        activeField?.delegate = self
         
         // Don't need to unregister since iOS 9
         registerKeyboardObservers()
@@ -51,6 +53,16 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // Detects which textfield being edited
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeField = textField
+    }
+    
+    // Set active textfield to nil when not editing
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        activeField = nil
+    }
+    
     // Creates observers for keyboard coming up and down
     fileprivate func registerKeyboardObservers() {
         // Set up for moving text fields up
@@ -74,14 +86,20 @@ class SignInVC: UIViewController, UITextFieldDelegate {
     func keyboardWillShow(notification: NSNotification) {
         // When keyboard is up, change relation to equal to and move textfield up
         self.topConstraint?.isActive = false
-        self.topConstraint = NSLayoutConstraint(item: stackView, attribute: .top, relatedBy: .equal, toItem: topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+        self.topConstraint = NSLayoutConstraint(item: stackView, attribute: .top, relatedBy: .equal, toItem: topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: originalTopConstraint)
         view.addConstraint(self.topConstraint!)
         
         if let userInfo = notification.userInfo {
             let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+            print("DANNY: Keyboard height \(keyboardFrame.height)")
+            
+            // Calc distance from bottom to email field
+            let origin = self.view.convert(view.frame.origin, from: activeField)
+            let emailHeight = view.frame.maxY - ((activeField?.frame.height)! + origin.y)
+            print("DANNY: Email height \(emailHeight)")
             
             // Move the whole stackview up
-            self.topConstraint?.constant -= keyboardFrame.height
+            self.topConstraint?.constant -= (keyboardFrame.height - emailHeight + 8)
             
             // Animation the movement
             UIView.animate(withDuration: 0.25,
