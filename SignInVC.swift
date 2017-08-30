@@ -10,9 +10,13 @@ import UIKit
 
 class SignInVC: UIViewController {
 
+    @IBOutlet weak var iconHeight: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        iconHeight.constant = view.frame.height/5.4
+        print(iconHeight.constant)
     }
 
     override func didReceiveMemoryWarning() {
