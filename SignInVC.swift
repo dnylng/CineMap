@@ -13,7 +13,9 @@ class SignInVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var iconHeight: NSLayoutConstraint!
     @IBOutlet weak var emailField: IndentTextField!
     @IBOutlet weak var passField: IndentTextField!
-    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    @IBOutlet weak var topConstraint: NSLayoutConstraint?
+    @IBOutlet weak var stackView: UIStackView!
+
     
     var originalTopConstraint: CGFloat!
     
@@ -25,7 +27,10 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         emailField.delegate = self
         passField.delegate = self
         
-        originalTopConstraint = topConstraint.constant
+        // Don't need to unregister since iOS 9
+        registerKeyboardObservers()
+        
+        originalTopConstraint = topConstraint?.constant
     }
 
     // From init, automatically resize icon for diff phone sizes
@@ -46,6 +51,13 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // Creates observers for keyboard coming up and down
+    fileprivate func registerKeyboardObservers() {
+        // Set up for moving text fields up
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
     // Hide keyboard when user touches outside of the keyboard
     @IBAction func closeKeyboard(_ sender: Any) {
         self.view.endEditing(true)
@@ -56,6 +68,45 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         emailField.resignFirstResponder()
         passField.resignFirstResponder()
         return true
+    }
+    
+    // When keyboard appears, move textfield up
+    func keyboardWillShow(notification: NSNotification) {
+        // When keyboard is up, change relation to equal to and move textfield up
+        self.topConstraint?.isActive = false
+        self.topConstraint = NSLayoutConstraint(item: stackView, attribute: .top, relatedBy: .equal, toItem: topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 0.0)
+        view.addConstraint(self.topConstraint!)
+        
+        if let userInfo = notification.userInfo {
+            let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+            
+            // Move the whole stackview up
+            self.topConstraint?.constant -= keyboardFrame.height
+            
+            // Animation the movement
+            UIView.animate(withDuration: 0.25,
+                           delay: TimeInterval(0),
+                           options: UIViewAnimationOptions(rawValue: 7),
+                           animations: { self.view.layoutIfNeeded() },
+                           completion: nil)
+        }
+    }
+    
+    // When keyboard is hidden, make sure top constraint is back to original
+    func keyboardWillHide() {
+        // When keyboard is down, switch to greater than and move textfield back down
+        self.topConstraint?.isActive = false
+        
+        // Set top constraint back to original
+        self.topConstraint = NSLayoutConstraint(item: stackView, attribute: .top, relatedBy: .greaterThanOrEqual, toItem: topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: originalTopConstraint)
+        view.addConstraint(self.topConstraint!)
+        
+        // Animate the movement
+        UIView.animate(withDuration: 0.25,
+                       delay: TimeInterval(0),
+                       options: UIViewAnimationOptions(rawValue: 7),
+                       animations: { self.view.layoutIfNeeded() },
+                       completion: nil)
     }
 
 }
