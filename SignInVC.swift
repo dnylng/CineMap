@@ -29,10 +29,17 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         passField.delegate = self
         activeField?.delegate = self
         
-        // Don't need to unregister since iOS 9
-        registerKeyboardObservers()
-        
         originalTopConstraint = topConstraint?.constant
+    }
+    
+    // Register observers
+    override func viewDidAppear(_ animated: Bool) {
+        registerKeyboardObservers()
+    }
+    
+    // Deregister observers
+    override func viewDidDisappear(_ animated: Bool) {
+        deregisterKeyboardObservers()
     }
 
     // From init, automatically resize icon for diff phone sizes
@@ -68,6 +75,12 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         // Set up for moving text fields up
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    // Deletes keyboard observers
+    fileprivate func deregisterKeyboardObservers() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     // Hide keyboard when user touches outside of the keyboard
@@ -128,8 +141,6 @@ class SignInVC: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func toSignUp(_ sender: Any) {
-//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         performSegue(withIdentifier: "toSignUp", sender: self)
     }
 
