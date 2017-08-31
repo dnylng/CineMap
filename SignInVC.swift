@@ -37,8 +37,15 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         originalTopConstraint = topConstraint?.constant
     }
     
-    // Register observers
+    // Register observers, auto login
     override func viewDidAppear(_ animated: Bool) {
+        // Auto login
+        if Auth.auth().currentUser?.uid != nil {
+            performSegue(withIdentifier: "toHomeFromSignIn", sender: self)
+        } else {
+            // User has to sign in
+        }
+        
         registerKeyboardObservers()
     }
     
