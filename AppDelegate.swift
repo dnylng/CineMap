@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Changes the status bar style to light mode
         UIApplication.shared.statusBarStyle = .lightContent
+        
+        // Firebase setup
+        FirebaseApp.configure()
         
         return true
     }

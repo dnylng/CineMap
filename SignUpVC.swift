@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SignUpVC: UIViewController, UITextFieldDelegate {
 
@@ -163,4 +164,42 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         dismiss(animated: true, completion: nil)
     }
     
+    // Makes an account w/ email and password in DB
+    @IBAction func handleSignUp(_ sender: Any) {
+        // Validate email and pass inputs
+        guard let email = emailField.text, let password = passField.text, let firstName = firstNameField.text, let lastName = lastNameField.text else {
+            print("Missing first name, last name, email or password input")
+            return
+        }
+        
+        // Create the user in Firebase if it doesn't exist
+        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+            if error != nil {
+                print("DANNY: \(error!)")
+                return
+            }
+            
+            guard let uid = user?.uid else {
+                return
+            }
+            
+            // Store these values in the database
+            let values = ["firstName": firstName, "lastName": lastName, "email": email]
+            
+            // Create a uid under users in DB
+            let newUser = usersRef.child(uid)
+            
+            // Update that uid with the values associated with it
+            newUser.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
+                if error != nil {
+                    print("DANNY: \(error!)")
+                    return
+                }
+                
+                print("DANNY: Created new user in the DB")
+                
+                self.performSegue(withIdentifier: "toHomeFromSignUp", sender: self)
+            })
+        }
+    }
 }

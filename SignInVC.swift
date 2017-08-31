@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SignInVC: UIViewController, UITextFieldDelegate {
     
@@ -30,10 +31,9 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         
         resizeIcon()
         
-        emailField.delegate = self
-        passField.delegate = self
-        activeField?.delegate = self
+        assignDelegates()
         
+        // Save the original top constraint value
         originalTopConstraint = topConstraint?.constant
     }
     
@@ -66,6 +66,13 @@ class SignInVC: UIViewController, UITextFieldDelegate {
     }
     
     // MARK:- KEYBOARD DELEGATE FUNCTIONS
+    
+    // Assigning textfield delegates
+    fileprivate func assignDelegates() {
+        emailField.delegate = self
+        passField.delegate = self
+        activeField?.delegate = self
+    }
     
     // Detects which textfield being edited
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -156,6 +163,8 @@ class SignInVC: UIViewController, UITextFieldDelegate {
     @IBAction func toSignUp(_ sender: Any) {
         performSegue(withIdentifier: "toSignUp", sender: self)
     }
+    
+    
 
 }
 
