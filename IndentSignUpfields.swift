@@ -1,17 +1,17 @@
 //
-//  IndentTextField.swift
+//  IndentSignUpfields.swift
 //  CineMap
 //
-//  Created by Danny Luong on 8/29/17.
+//  Created by Danny Luong on 8/30/17.
 //  Copyright © 2017 dnylng. All rights reserved.
 //
 
 import UIKit
 
-class IndentTextField: UITextField {
+class IndentSignUpfields: UITextField {
 
     // Create an indent to the left and slight padding on the right
-    let padding = UIEdgeInsets(top: 0, left: 60, bottom: 0, right: 5);
+    let padding = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8);
     
     // Padding for the text box
     override func textRect(forBounds bounds: CGRect) -> CGRect {
@@ -27,5 +27,6 @@ class IndentTextField: UITextField {
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return UIEdgeInsetsInsetRect(bounds, padding)
     }
+
 
 }

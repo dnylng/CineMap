@@ -11,8 +11,8 @@ import UIKit
 class SignInVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var iconHeight: NSLayoutConstraint!
-    @IBOutlet weak var emailField: IndentTextField!
-    @IBOutlet weak var passField: IndentTextField!
+    @IBOutlet weak var emailField: IndentSignInFields!
+    @IBOutlet weak var passField: IndentSignInFields!
     @IBOutlet weak var topConstraint: NSLayoutConstraint?
     @IBOutlet weak var stackView: UIStackView!
 

@@ -24,7 +24,7 @@
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" userLabel="SignIn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -75,13 +75,13 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="58z-FN-Qd6">
                                         <rect key="frame" x="0.0" y="348" width="311.33333333333337" height="172"/>
                                         <subviews>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" background="Username Field" translatesAutoresizingMaskIntoConstraints="NO" id="gSf-bS-BiQ" customClass="IndentTextField" customModule="CineMap" customModuleProvider="target">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" background="Username Field" translatesAutoresizingMaskIntoConstraints="NO" id="gSf-bS-BiQ" customClass="IndentSignInFields" customModule="CineMap" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="311.33333333333337" height="52"/>
                                                 <color key="textColor" red="0.99767130609999999" green="0.9571499228" blue="0.95634573700000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" background="Password Field" translatesAutoresizingMaskIntoConstraints="NO" id="gKW-hM-UAG" customClass="IndentTextField" customModule="CineMap" customModuleProvider="target">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" background="Password Field" translatesAutoresizingMaskIntoConstraints="NO" id="gKW-hM-UAG" customClass="IndentSignInFields" customModule="CineMap" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="60" width="311.33333333333337" height="52"/>
                                                 <color key="textColor" red="0.99767130609999999" green="0.9571499228" blue="0.95634573700000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
@@ -166,7 +166,7 @@
                         <viewControllerLayoutGuide type="top" id="TUI-VU-jyf"/>
                         <viewControllerLayoutGuide type="bottom" id="IB7-ru-OXk"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="YAK-Fy-UrV" customClass="Home">
+                    <view key="view" contentMode="scaleToFill" id="YAK-Fy-UrV" userLabel="SignUp" customClass="Home">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -192,7 +192,7 @@
                                                 <color key="textColor" red="1" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="12" background="Textfield" translatesAutoresizingMaskIntoConstraints="NO" id="Dwg-m9-xfj">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="12" background="Textfield" translatesAutoresizingMaskIntoConstraints="NO" id="Dwg-m9-xfj" customClass="IndentSignUpfields" customModule="CineMap" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="22" width="300" height="50"/>
                                                 <color key="textColor" red="1" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
@@ -209,7 +209,7 @@
                                                 <color key="textColor" red="1" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="12" background="Textfield" translatesAutoresizingMaskIntoConstraints="NO" id="95V-Li-Ujt">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="12" background="Textfield" translatesAutoresizingMaskIntoConstraints="NO" id="95V-Li-Ujt" customClass="IndentSignUpfields" customModule="CineMap" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="22" width="300" height="49.666666666666686"/>
                                                 <color key="textColor" red="1" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
@@ -226,7 +226,7 @@
                                                 <color key="textColor" red="1" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="12" background="Textfield" translatesAutoresizingMaskIntoConstraints="NO" id="cdP-yn-UY3">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="12" background="Textfield" translatesAutoresizingMaskIntoConstraints="NO" id="cdP-yn-UY3" customClass="IndentSignUpfields" customModule="CineMap" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="22" width="300" height="50.333333333333314"/>
                                                 <color key="textColor" red="1" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
@@ -243,7 +243,7 @@
                                                 <color key="textColor" red="1" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="12" background="Textfield" translatesAutoresizingMaskIntoConstraints="NO" id="Vyp-jf-Uim">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="12" background="Textfield" translatesAutoresizingMaskIntoConstraints="NO" id="Vyp-jf-Uim" customClass="IndentSignUpfields" customModule="CineMap" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="22" width="300" height="50"/>
                                                 <color key="textColor" red="1" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
@@ -280,11 +280,12 @@
                                     <color key="titleColor" red="0.59999999999999998" green="0.90588235294117647" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="cancelSignUp:" destination="cTQ-ta-aWb" eventType="touchUpInside" id="Ixn-Y1-Q88"/>
+                                    <action selector="cancelSignUp:" destination="cTQ-ta-aWb" eventType="touchUpInside" id="Z67-io-wFZ"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Vrf-eb-MNS" firstAttribute="leading" secondItem="YAK-Fy-UrV" secondAttribute="leadingMargin" id="2Oy-Ii-ZLF"/>
                             <constraint firstItem="JYr-oL-F8a" firstAttribute="top" secondItem="YAK-Fy-UrV" secondAttribute="top" id="5c5-HP-Yu7"/>
@@ -298,9 +299,26 @@
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="sH5-rp-HIa" secondAttribute="trailing" constant="20" id="RCq-5n-ODJ"/>
                             <constraint firstAttribute="trailing" secondItem="JYr-oL-F8a" secondAttribute="trailing" id="pAH-Xt-r0i"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="kWV-ur-Nee" appends="YES" id="W5l-Uo-3UN"/>
+                        </connections>
                     </view>
+                    <connections>
+                        <outlet property="emailField" destination="cdP-yn-UY3" id="Tlj-QT-m7t"/>
+                        <outlet property="firstNameField" destination="Dwg-m9-xfj" id="fgd-af-YS4"/>
+                        <outlet property="iconHeight" destination="jaF-oz-mo7" id="akE-Dq-pPe"/>
+                        <outlet property="lastNameField" destination="95V-Li-Ujt" id="x69-pA-KD4"/>
+                        <outlet property="passField" destination="Vyp-jf-Uim" id="ECx-GQ-HYl"/>
+                        <outlet property="stackView" destination="sH5-rp-HIa" id="hP0-YF-lS8"/>
+                        <outlet property="topConstraint" destination="PbR-3C-uCE" id="TK1-Mn-ZN4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eXq-ri-hvT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="kWV-ur-Nee" userLabel="Close Keyboard">
+                    <connections>
+                        <action selector="closeKeyboard:" destination="cTQ-ta-aWb" id="Xc8-lk-NZY"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="860.625" y="0.0"/>
         </scene>
