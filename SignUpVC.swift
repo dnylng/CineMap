@@ -10,6 +10,8 @@ import UIKit
 
 class SignUpVC: UIViewController, UITextFieldDelegate {
 
+    // MARK:- IBOUTLETS
+    
     @IBOutlet weak var iconHeight: NSLayoutConstraint!
     @IBOutlet weak var firstNameField: IndentSignUpfields!
     @IBOutlet weak var lastNameField: IndentSignUpfields!
@@ -18,8 +20,12 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var stackView: UIStackView!
     
+    // MARK:- VARIABLES
+    
     var originalTopConstraint: CGFloat!
     var activeField: UITextField?
+    
+    // MARK:- INITIALIZATION FUNCTIONS
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +69,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // MARK:- KEYBOARD DELEGATE FUNCTIONS
+    
     // Detects which textfield being edited
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeField = textField
@@ -72,6 +80,22 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         activeField = nil
     }
+    
+    // User presses return key to remove keyboard
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        firstNameField.resignFirstResponder()
+        lastNameField.resignFirstResponder()
+        emailField.resignFirstResponder()
+        passField.resignFirstResponder()
+        return true
+    }
+    
+    // Hide keyboard when user touches outside of the keyboard
+    @IBAction func closeKeyboard(_ sender: Any) {
+        self.view.endEditing(true)
+    }
+    
+    // MARK:- KEYBOARD OBSERVER FUNCTIONS
     
     // Creates observers for keyboard coming up and down
     fileprivate func registerKeyboardObservers() {
@@ -84,20 +108,6 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     fileprivate func deregisterKeyboardObservers() {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-    }
-    
-    // Hide keyboard when user touches outside of the keyboard
-    @IBAction func closeKeyboard(_ sender: Any) {
-        self.view.endEditing(true)
-    }
-    
-    // User presses return key to remove keyboard
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        firstNameField.resignFirstResponder()
-        lastNameField.resignFirstResponder()
-        emailField.resignFirstResponder()
-        passField.resignFirstResponder()
-        return true
     }
     
     // When keyboard appears, move textfield up
@@ -115,6 +125,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             let origin = self.view.convert(view.frame.origin, from: activeField)
             let emailHeight = view.frame.maxY - ((activeField?.frame.height)! + origin.y)
             print("DANNY: Email height \(emailHeight)")
+            
+            // TODO: Fix behavior of going from bottom textfield and up
             
             // Move the whole stackview up
             self.topConstraint?.constant -= (keyboardFrame.height - emailHeight + 8)
@@ -144,6 +156,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                        animations: { self.view.layoutIfNeeded() },
                        completion: nil)
     }
+    
+    // MARK:- FIREBASE AUTHENTICATION
     
     @IBAction func cancelSignUp(_ sender: Any) {
         dismiss(animated: true, completion: nil)
