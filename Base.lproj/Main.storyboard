@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_5" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -25,27 +25,27 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" userLabel="SignIn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Wallpaper" translatesAutoresizingMaskIntoConstraints="NO" id="cym-52-aqJ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Rz0-MH-6zU">
-                                <rect key="frame" x="51.333333333333343" y="40" width="311.33333333333337" height="656"/>
+                                <rect key="frame" x="39.5" y="40" width="296" height="587"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nyl-85-KWT">
-                                        <rect key="frame" x="0.0" y="0.0" width="311.33333333333337" height="235"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="296" height="235"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="CineMap Icon Dark" translatesAutoresizingMaskIntoConstraints="NO" id="rjM-5Q-CDy">
-                                                <rect key="frame" x="0.0" y="0.0" width="311.33333333333337" height="150"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="296" height="150"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="WmO-b0-crO"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cine Map" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="24" translatesAutoresizingMaskIntoConstraints="NO" id="gsl-Wi-vlo">
-                                                <rect key="frame" x="0.0" y="158" width="311.33333333333337" height="77"/>
+                                                <rect key="frame" x="0.0" y="158" width="296" height="77"/>
                                                 <fontDescription key="fontDescription" name="Neou-Thin" family="Neou" pointSize="64"/>
                                                 <color key="textColor" red="0.99767130609999999" green="0.9571499228" blue="0.95634573700000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -53,57 +53,57 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wL4-JQ-yFC">
-                                        <rect key="frame" x="0.0" y="255" width="311.33333333333337" height="52"/>
+                                        <rect key="frame" x="0.0" y="255" width="296" height="49.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2e-pA-I8g">
-                                                <rect key="frame" x="0.0" y="0.0" width="150.66666666666666" height="52"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="143" height="49.5"/>
                                                 <state key="normal" image="Google Sign In Button"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UuD-8Q-sJ8">
-                                                <rect key="frame" x="160.66666666666666" y="0.0" width="150.66666666666671" height="52"/>
+                                                <rect key="frame" x="153" y="0.0" width="143" height="49.5"/>
                                                 <state key="normal" image="Facebook Sign In Button"/>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ty1-8g-NSh" userLabel="Divider">
-                                        <rect key="frame" x="0.0" y="327" width="311.33333333333337" height="1"/>
+                                        <rect key="frame" x="0.0" y="324.5" width="296" height="1"/>
                                         <color key="backgroundColor" red="0.99767130609999999" green="0.9571499228" blue="0.95634573700000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="bV9-R5-p69"/>
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="58z-FN-Qd6">
-                                        <rect key="frame" x="0.0" y="348" width="311.33333333333337" height="172"/>
+                                        <rect key="frame" x="0.0" y="345.5" width="296" height="164"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" background="Username Field" translatesAutoresizingMaskIntoConstraints="NO" id="gSf-bS-BiQ" customClass="IndentSignInFields" customModule="CineMap" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="311.33333333333337" height="52"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="296" height="49.5"/>
                                                 <color key="textColor" red="0.99767130609999999" green="0.9571499228" blue="0.95634573700000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" background="Password Field" translatesAutoresizingMaskIntoConstraints="NO" id="gKW-hM-UAG" customClass="IndentSignInFields" customModule="CineMap" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="60" width="311.33333333333337" height="52"/>
+                                                <rect key="frame" x="0.0" y="57.5" width="296" height="49"/>
                                                 <color key="textColor" red="0.99767130609999999" green="0.9571499228" blue="0.95634573700000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z2n-JT-UNI">
-                                                <rect key="frame" x="0.0" y="120" width="311.33333333333337" height="52"/>
+                                                <rect key="frame" x="0.0" y="114.5" width="296" height="49.5"/>
                                                 <state key="normal" backgroundImage="Sign In Button"/>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="d4M-Ow-4ME">
-                                        <rect key="frame" x="0.0" y="540" width="311.33333333333337" height="116"/>
+                                        <rect key="frame" x="0.0" y="529.5" width="296" height="57.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="ue2-Zi-wee">
-                                                <rect key="frame" x="0.0" y="0.0" width="171" height="56"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="171" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                 <color key="textColor" red="0.99767130609999999" green="0.9571499228" blue="0.95634573700000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5n1-fO-5kQ">
-                                                <rect key="frame" x="0.0" y="64" width="311.33333333333337" height="52"/>
+                                                <rect key="frame" x="0.0" y="8" width="296" height="49.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="5n1-fO-5kQ" secondAttribute="height" multiplier="6:1" id="SDf-pX-7MW"/>
                                                 </constraints>
@@ -167,24 +167,24 @@
                         <viewControllerLayoutGuide type="bottom" id="IB7-ru-OXk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="YAK-Fy-UrV" userLabel="SignUp" customClass="Home">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Wallpaper" translatesAutoresizingMaskIntoConstraints="NO" id="JYr-oL-F8a">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <gestureRecognizers/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="sH5-rp-HIa">
-                                <rect key="frame" x="57" y="40" width="300" height="588"/>
+                                <rect key="frame" x="37.5" y="40" width="300" height="589.5"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CineMap Icon Dark" translatesAutoresizingMaskIntoConstraints="NO" id="AUU-AI-zJ0">
-                                        <rect key="frame" x="87.666666666666671" y="0.0" width="125.00000000000001" height="150"/>
+                                        <rect key="frame" x="87.5" y="0.0" width="125" height="150"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="150" id="jaF-oz-mo7"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="SCc-2M-rR3" userLabel="First Name Field">
-                                        <rect key="frame" x="0.0" y="170" width="300" height="72"/>
+                                        <rect key="frame" x="0.0" y="170" width="300" height="72.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJH-kM-Rlz">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="22"/>
@@ -193,7 +193,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="12" background="Textfield" translatesAutoresizingMaskIntoConstraints="NO" id="Dwg-m9-xfj" customClass="IndentSignUpfields" customModule="CineMap" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="22" width="300" height="50"/>
+                                                <rect key="frame" x="0.0" y="22" width="300" height="50.5"/>
                                                 <color key="textColor" red="1" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -201,7 +201,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="e9U-PX-PDE" userLabel="Last Name Field">
-                                        <rect key="frame" x="0.0" y="262" width="300" height="71.666666666666686"/>
+                                        <rect key="frame" x="0.0" y="262.5" width="300" height="72"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbA-LZ-U0F">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="22"/>
@@ -210,7 +210,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="12" background="Textfield" translatesAutoresizingMaskIntoConstraints="NO" id="95V-Li-Ujt" customClass="IndentSignUpfields" customModule="CineMap" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="22" width="300" height="49.666666666666686"/>
+                                                <rect key="frame" x="0.0" y="22" width="300" height="50"/>
                                                 <color key="textColor" red="1" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -218,7 +218,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0Cs-JV-QN0" userLabel="Email Field">
-                                        <rect key="frame" x="0.0" y="353.66666666666674" width="300" height="72.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="354.5" width="300" height="72.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3X-VB-hw8">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="22"/>
@@ -227,7 +227,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="12" background="Textfield" translatesAutoresizingMaskIntoConstraints="NO" id="cdP-yn-UY3" customClass="IndentSignUpfields" customModule="CineMap" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="22" width="300" height="50.333333333333314"/>
+                                                <rect key="frame" x="0.0" y="22" width="300" height="50.5"/>
                                                 <color key="textColor" red="1" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -235,7 +235,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="0TW-23-aXF" userLabel="Password Field">
-                                        <rect key="frame" x="0.0" y="446" width="300" height="72"/>
+                                        <rect key="frame" x="0.0" y="447" width="300" height="72.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lJ-fr-xue">
                                                 <rect key="frame" x="0.0" y="0.0" width="300" height="22"/>
@@ -244,7 +244,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="12" background="Textfield" translatesAutoresizingMaskIntoConstraints="NO" id="Vyp-jf-Uim" customClass="IndentSignUpfields" customModule="CineMap" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="22" width="300" height="50"/>
+                                                <rect key="frame" x="0.0" y="22" width="300" height="50.5"/>
                                                 <color key="textColor" red="1" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -252,29 +252,29 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jTZ-WR-7tw" userLabel="Sign Up">
-                                        <rect key="frame" x="0.0" y="538" width="300" height="50"/>
+                                        <rect key="frame" x="0.0" y="539.5" width="300" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="jTZ-WR-7tw" secondAttribute="height" multiplier="6:1" id="CNw-KD-yrr"/>
+                                        </constraints>
                                         <state key="normal" backgroundImage="Sign Up Button"/>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Dwg-m9-xfj" firstAttribute="height" secondItem="jTZ-WR-7tw" secondAttribute="height" id="04D-dk-VG7"/>
-                                    <constraint firstItem="95V-Li-Ujt" firstAttribute="height" secondItem="jTZ-WR-7tw" secondAttribute="height" id="AZW-e3-zF4"/>
-                                    <constraint firstItem="Vyp-jf-Uim" firstAttribute="height" secondItem="jTZ-WR-7tw" secondAttribute="height" id="EV9-cP-sFf"/>
-                                    <constraint firstItem="0TW-23-aXF" firstAttribute="leading" secondItem="sH5-rp-HIa" secondAttribute="leading" id="FM7-5N-Wep"/>
-                                    <constraint firstAttribute="trailing" secondItem="0TW-23-aXF" secondAttribute="trailing" id="JgN-8J-Prl"/>
-                                    <constraint firstItem="e9U-PX-PDE" firstAttribute="leading" secondItem="sH5-rp-HIa" secondAttribute="leading" id="NKB-uZ-poH"/>
-                                    <constraint firstAttribute="trailing" secondItem="e9U-PX-PDE" secondAttribute="trailing" id="OQE-Ww-vet"/>
-                                    <constraint firstAttribute="trailing" secondItem="SCc-2M-rR3" secondAttribute="trailing" id="RQ0-qP-AQc"/>
-                                    <constraint firstAttribute="trailing" secondItem="0Cs-JV-QN0" secondAttribute="trailing" id="Yor-tO-xVl"/>
-                                    <constraint firstAttribute="trailing" secondItem="jTZ-WR-7tw" secondAttribute="trailing" id="cXq-AJ-MvF"/>
-                                    <constraint firstItem="SCc-2M-rR3" firstAttribute="leading" secondItem="sH5-rp-HIa" secondAttribute="leading" id="hbC-Pc-JNW"/>
-                                    <constraint firstItem="jTZ-WR-7tw" firstAttribute="leading" secondItem="sH5-rp-HIa" secondAttribute="leading" id="nsO-CQ-Xhp"/>
-                                    <constraint firstItem="0Cs-JV-QN0" firstAttribute="leading" secondItem="sH5-rp-HIa" secondAttribute="leading" id="uAD-IO-5n6"/>
-                                    <constraint firstItem="cdP-yn-UY3" firstAttribute="height" secondItem="jTZ-WR-7tw" secondAttribute="height" id="yY9-8B-caX"/>
+                                    <constraint firstItem="e9U-PX-PDE" firstAttribute="width" secondItem="0Cs-JV-QN0" secondAttribute="width" id="IGw-FJ-DBb"/>
+                                    <constraint firstItem="Vyp-jf-Uim" firstAttribute="height" secondItem="jTZ-WR-7tw" secondAttribute="height" id="TBo-Yy-I4Q"/>
+                                    <constraint firstItem="cdP-yn-UY3" firstAttribute="height" secondItem="Vyp-jf-Uim" secondAttribute="height" id="TbN-zB-crv"/>
+                                    <constraint firstItem="Dwg-m9-xfj" firstAttribute="height" secondItem="95V-Li-Ujt" secondAttribute="height" id="aBG-JQ-MCE"/>
+                                    <constraint firstItem="Vyp-jf-Uim" firstAttribute="width" secondItem="jTZ-WR-7tw" secondAttribute="width" id="aSY-ua-Sfl"/>
+                                    <constraint firstItem="e9U-PX-PDE" firstAttribute="height" secondItem="0Cs-JV-QN0" secondAttribute="height" id="cT2-C3-ynA"/>
+                                    <constraint firstItem="SCc-2M-rR3" firstAttribute="height" secondItem="e9U-PX-PDE" secondAttribute="height" id="gtv-yj-kko"/>
+                                    <constraint firstItem="0Cs-JV-QN0" firstAttribute="width" secondItem="0TW-23-aXF" secondAttribute="width" id="jhw-oI-n2V"/>
+                                    <constraint firstItem="95V-Li-Ujt" firstAttribute="height" secondItem="cdP-yn-UY3" secondAttribute="height" id="kfg-NG-T96"/>
+                                    <constraint firstItem="0Cs-JV-QN0" firstAttribute="height" secondItem="0TW-23-aXF" secondAttribute="height" id="nog-BH-pV1"/>
+                                    <constraint firstItem="SCc-2M-rR3" firstAttribute="width" secondItem="e9U-PX-PDE" secondAttribute="width" id="roD-QV-qKP"/>
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vrf-eb-MNS">
-                                <rect key="frame" x="20" y="20" width="82" height="28"/>
+                                <rect key="frame" x="16" y="20" width="82" height="28"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
                                 <state key="normal" title=" Cancel" image="Cancel Button">
                                     <color key="titleColor" red="0.59999999999999998" green="0.90588235294117647" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
@@ -289,11 +289,10 @@
                         <constraints>
                             <constraint firstItem="Vrf-eb-MNS" firstAttribute="leading" secondItem="YAK-Fy-UrV" secondAttribute="leadingMargin" id="2Oy-Ii-ZLF"/>
                             <constraint firstItem="JYr-oL-F8a" firstAttribute="top" secondItem="YAK-Fy-UrV" secondAttribute="top" id="5c5-HP-Yu7"/>
-                            <constraint firstItem="IB7-ru-OXk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="sH5-rp-HIa" secondAttribute="bottom" constant="30" id="HV7-W2-Qut"/>
                             <constraint firstItem="JYr-oL-F8a" firstAttribute="leading" secondItem="YAK-Fy-UrV" secondAttribute="leading" id="J2B-P6-Ar8"/>
                             <constraint firstItem="IB7-ru-OXk" firstAttribute="top" secondItem="JYr-oL-F8a" secondAttribute="bottom" id="JOr-Zw-t4F"/>
                             <constraint firstItem="sH5-rp-HIa" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YAK-Fy-UrV" secondAttribute="leadingMargin" constant="20" id="JoY-rO-nPs"/>
-                            <constraint firstItem="sH5-rp-HIa" firstAttribute="centerX" secondItem="YAK-Fy-UrV" secondAttribute="centerX" id="L0n-Dq-E4W"/>
+                            <constraint firstItem="sH5-rp-HIa" firstAttribute="centerX" secondItem="YAK-Fy-UrV" secondAttribute="centerX" id="LgA-jQ-p9m"/>
                             <constraint firstItem="Vrf-eb-MNS" firstAttribute="top" secondItem="TUI-VU-jyf" secondAttribute="bottom" id="OG2-03-54o"/>
                             <constraint firstItem="sH5-rp-HIa" firstAttribute="top" secondItem="TUI-VU-jyf" secondAttribute="bottom" constant="20" id="PbR-3C-uCE"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="sH5-rp-HIa" secondAttribute="trailing" constant="20" id="RCq-5n-ODJ"/>

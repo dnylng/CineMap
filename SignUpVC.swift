@@ -117,7 +117,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             print("DANNY: Email height \(emailHeight)")
             
             // Move the whole stackview up
-            self.topConstraint?.constant -= (keyboardFrame.height - emailHeight)
+            self.topConstraint?.constant -= (keyboardFrame.height - emailHeight + 8)
             
             // Animation the movement
             UIView.animate(withDuration: 0.25,
