@@ -58,10 +58,16 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2e-pA-I8g">
                                                 <rect key="frame" x="0.0" y="0.0" width="150.66666666666666" height="52"/>
                                                 <state key="normal" image="Google Sign In Button"/>
+                                                <connections>
+                                                    <action selector="handleGoogleSignIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LML-c6-vPY"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UuD-8Q-sJ8">
                                                 <rect key="frame" x="160.66666666666666" y="0.0" width="150.66666666666671" height="52"/>
                                                 <state key="normal" image="Facebook Sign In Button"/>
+                                                <connections>
+                                                    <action selector="handleFacebookSignIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="N4Q-5n-D2t"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>

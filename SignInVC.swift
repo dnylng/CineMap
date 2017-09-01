@@ -8,6 +8,9 @@
 
 import UIKit
 import Firebase
+import FBSDKCoreKit
+import FBSDKLoginKit
+import GoogleSignIn
 
 class SignInVC: UIViewController, UITextFieldDelegate {
     
@@ -200,5 +203,78 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         }
     }
 
+    @IBAction func handleGoogleSignIn(_ sender: Any) {
+        
+    }
+    
+    // Sign into Firebase with Facebook credentials
+    @IBAction func handleFacebookSignIn(_ sender: Any) {
+        let facebookLogin = FBSDKLoginManager()
+        
+        facebookLogin.logIn(withReadPermissions: ["email"], from: self) { (loginResult, error) in
+            if error != nil {
+                print("DANNY: \(error!)")
+            } else if loginResult?.isCancelled == true {
+                print("DANNY: User cancelled Facebook authentication")
+            } else {
+                let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                Auth.auth().signIn(with: credential, completion: { (user, error) in
+                    if error != nil {
+                        print("DANNY: \(error!)")
+                        return
+                    }
+                    
+                    print("DANNY: Successfully authenticated with Facebook")
+                    
+                    // Create the Facebook acc entry in DB
+                    guard let uid = user?.uid else {
+                        return
+                    }
+                    
+                    // Grab email, first name, and last name from profile
+                    if let _ = FBSDKAccessToken.current()
+                    {
+                        let parameters = ["fields":"email, first_name, last_name"]
+                        FBSDKGraphRequest(graphPath: "me", parameters: parameters).start { (connection, result, error) in
+                            if error != nil {
+                                print("DANNY: \(error!)")
+                                return
+                            }
+                            
+                            if let result = result as? [String:String] {
+                                let email = result["email"]
+                                let firstName = result["first_name"]
+                                let lastName = result["last_name"]
+                                
+                                // Store these values in the database
+                                let values = ["firstName": firstName, "lastName": lastName, "email": email]
+                                
+                                // Create a uid under users in DB
+                                let newUser = usersRef.child(uid)
+                                
+                                // Update that uid with the values associated with it
+                                newUser.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
+                                    if error != nil {
+                                        print("DANNY: \(error!)")
+                                        return
+                                    }
+                                    
+                                    print("DANNY: Created new Facebook user in the DB")
+                                    
+                                    
+                                    // Go to the Home screen
+                                    self.performSegue(withIdentifier: "toHomeFromSignIn", sender: self)
+                                })
+                            }
+                        }
+                    }
+                })
+            }
+        }
+    }
+    
+    func fetchProfile() {
+        
+    }
 }
 

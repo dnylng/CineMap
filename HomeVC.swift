@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FBSDKLoginKit
 
 class HomeVC: UIViewController {
     
@@ -27,6 +28,7 @@ class HomeVC: UIViewController {
         
         do {
             try Auth.auth().signOut()
+            FBSDKLoginManager().logOut()
         } catch let error {
             print("DANNY: \(error)")
         }
