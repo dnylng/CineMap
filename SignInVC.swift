@@ -52,7 +52,10 @@ class SignInVC: UIViewController, UITextFieldDelegate {
     // Deregister observers
     override func viewDidDisappear(_ animated: Bool) {
         deregisterKeyboardObservers()
+        clearTextfields()
     }
+    
+    // MARK:- HELPER FUNCTIONS
     
     // From init, automatically resize icon for diff phone sizes
     fileprivate func resizeIcon() {
@@ -70,6 +73,11 @@ class SignInVC: UIViewController, UITextFieldDelegate {
             iconHeight.constant = 138
             print("DANNY: iPhone 7, Icon Height: \(iconHeight.constant)")
         }
+    }
+    
+    fileprivate func clearTextfields() {
+        emailField.text = ""
+        passField.text = ""
     }
     
     // MARK:- KEYBOARD DELEGATE FUNCTIONS

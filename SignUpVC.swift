@@ -26,7 +26,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     var originalTopConstraint: CGFloat!
     var activeField: UITextField?
     
-    // MARK:- INITIALIZATION/HELPER FUNCTIONS
+    // MARK:- INITIALIZATION
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +50,10 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     // Deregister observers
     override func viewDidDisappear(_ animated: Bool) {
         deregisterKeyboardObservers()
+        clearTextfields()
     }
+    
+    // MARK:- HELPER FUNCTIONS
     
     // From init, automatically resize icon for diff phone sizes
     fileprivate func resizeIcon() {
@@ -68,6 +71,13 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             iconHeight.constant = 138
             print("DANNY: iPhone 7, Icon Height: \(iconHeight.constant)")
         }
+    }
+    
+    fileprivate func clearTextfields() {
+        firstNameField.text = ""
+        lastNameField.text = ""
+        emailField.text = ""
+        passField.text = ""
     }
     
     // MARK:- KEYBOARD DELEGATE FUNCTIONS
