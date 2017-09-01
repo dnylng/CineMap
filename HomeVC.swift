@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FBSDKLoginKit
+import GoogleSignIn
 
 class HomeVC: UIViewController {
     
@@ -29,6 +30,7 @@ class HomeVC: UIViewController {
         do {
             try Auth.auth().signOut()
             FBSDKLoginManager().logOut()
+            GIDSignIn.sharedInstance().signOut()
         } catch let error {
             print("DANNY: \(error)")
         }

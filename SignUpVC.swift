@@ -193,26 +193,12 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 return
             }
             
-            // Store these values in the database
-            let values = ["firstName": firstName, "lastName": lastName, "email": email]
+            createUserInDB(uid: uid, firstName: firstName, lastName: lastName, email: email)
             
-            // Create a uid under users in DB
-            let newUser = usersRef.child(uid)
-            
-            // Update that uid with the values associated with it
-            newUser.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
-                if error != nil {
-                    print("DANNY: \(error!)")
-                    return
-                }
-                
-                print("DANNY: Created new user in the DB")
-                
-                // Dismiss this VC
-                self.dismiss(animated: true, completion: {
-                    // Go to the Home screen
-                    self.performSegue(withIdentifier: "toHomeFromSignUp", sender: self)
-                })
+            // Dismiss this VC
+            self.dismiss(animated: true, completion: {
+                // Go to the Home screen
+                self.performSegue(withIdentifier: "toHomeFromSignUp", sender: self)
             })
         }
     }

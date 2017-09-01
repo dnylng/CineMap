@@ -157,7 +157,7 @@
                         <outlet property="stackView" destination="Rz0-MH-6zU" id="Dms-LJ-ySG"/>
                         <outlet property="topConstraint" destination="OOF-JZ-TdY" id="RA3-DV-Jgs"/>
                         <segue destination="cTQ-ta-aWb" kind="presentation" identifier="toSignUp" modalTransitionStyle="crossDissolve" id="9zT-xz-ucJ"/>
-                        <segue destination="rch-PP-Atz" kind="show" identifier="toHomeFromSignIn" id="JNK-Vi-tRg"/>
+                        <segue destination="rch-PP-Atz" kind="presentation" identifier="toHomeFromSignIn" modalTransitionStyle="flipHorizontal" id="JNK-Vi-tRg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -425,6 +425,6 @@
         <image name="Wallpaper" width="414" height="736"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="eBf-Ft-03g"/>
+        <segue reference="JNK-Vi-tRg"/>
     </inferredMetricsTieBreakers>
 </document>

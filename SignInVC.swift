@@ -12,7 +12,7 @@ import FBSDKCoreKit
 import FBSDKLoginKit
 import GoogleSignIn
 
-class SignInVC: UIViewController, UITextFieldDelegate {
+class SignInVC: UIViewController, UITextFieldDelegate, GIDSignInDelegate, GIDSignInUIDelegate {
     
     // MARK:- IBOUTLETS
     
@@ -38,6 +38,9 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         
         // Save the original top constraint value
         originalTopConstraint = topConstraint?.constant
+        
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().uiDelegate = self
     }
     
     // Register observers, auto login
@@ -199,12 +202,64 @@ class SignInVC: UIViewController, UITextFieldDelegate {
             
             print("DANNY: Successfully signed in with email and password")
             
+            // Go to the Home screen
             self.performSegue(withIdentifier: "toHomeFromSignIn", sender: self)
         }
     }
 
+    // Calls the Google Sign In function
     @IBAction func handleGoogleSignIn(_ sender: Any) {
+        GIDSignIn.sharedInstance().signIn()
+    }
+    
+    // Sign into Firebase with Google credentials
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            print("DANNY: Failed to authenticate with Google", error)
+            return
+        }
+        print("DANNY: Successfully authenticated with Google!", user)
         
+        // Create user id/access token to sign into Firebase with
+        guard let idToken = user.authentication.idToken else { return }
+        guard let accessToken = user.authentication.accessToken else { return }
+        
+        let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
+        Auth.auth().signIn(with: credential) { (user, error) in
+            if error != nil {
+                print("DANNY: Unable to authenticate to Firebase with Google")
+            } else {
+                print("DANNY: Successfully authenticated with Google")
+                
+                // Create the Google acc entry in DB
+                guard let uid = user?.uid else { return }
+                
+                // Retrieve email, first name, and last name from Google servers
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                
+                // Create a url requesting for user info with access token
+                let url = URL(string:  "https://www.googleapis.com/oauth2/v3/userinfo?access_token=\(accessToken)")
+                let session = URLSession.shared
+                
+                // Retrieve the data
+                session.dataTask(with: url!) {(data, response, error) -> Void in
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    do {
+                        let userData = try JSONSerialization.jsonObject(with: data!, options:[]) as? [String:AnyObject]
+                        let firstName = userData!["given_name"] as! String
+                        let lastName = userData!["family_name"] as! String
+                        let email = userData!["email"] as! String
+                        
+                        createUserInDB(uid: uid, firstName: firstName, lastName: lastName, email: email)
+                    } catch {
+                        print("DANNY: Account Information could not be loaded from Google")
+                    }
+                }.resume()
+
+                // Go to the Home screen
+                self.performSegue(withIdentifier: "toHomeFromSignIn", sender: self)
+            }
+        }
     }
     
     // Sign into Firebase with Facebook credentials
@@ -227,9 +282,7 @@ class SignInVC: UIViewController, UITextFieldDelegate {
                     print("DANNY: Successfully authenticated with Facebook")
                     
                     // Create the Facebook acc entry in DB
-                    guard let uid = user?.uid else {
-                        return
-                    }
+                    guard let uid = user?.uid else { return }
                     
                     // Grab email, first name, and last name from profile
                     if let _ = FBSDKAccessToken.current()
@@ -246,26 +299,11 @@ class SignInVC: UIViewController, UITextFieldDelegate {
                                 let firstName = result["first_name"]
                                 let lastName = result["last_name"]
                                 
-                                // Store these values in the database
-                                let values = ["firstName": firstName, "lastName": lastName, "email": email]
-                                
-                                // Create a uid under users in DB
-                                let newUser = usersRef.child(uid)
-                                
-                                // Update that uid with the values associated with it
-                                newUser.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
-                                    if error != nil {
-                                        print("DANNY: \(error!)")
-                                        return
-                                    }
-                                    
-                                    print("DANNY: Created new Facebook user in the DB")
-                                    
-                                    
-                                    // Go to the Home screen
-                                    self.performSegue(withIdentifier: "toHomeFromSignIn", sender: self)
-                                })
+                                createUserInDB(uid: uid, firstName: firstName!, lastName: lastName!, email: email!)
                             }
+                            
+                            // Go to the Home screen
+                            self.performSegue(withIdentifier: "toHomeFromSignIn", sender: self)
                         }
                     }
                 })
@@ -273,8 +311,5 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func fetchProfile() {
-        
-    }
 }
 
