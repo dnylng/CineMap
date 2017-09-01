@@ -90,6 +90,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z2n-JT-UNI">
                                                 <rect key="frame" x="0.0" y="120" width="311.33333333333337" height="52"/>
                                                 <state key="normal" backgroundImage="Sign In Button"/>
+                                                <connections>
+                                                    <action selector="handleSignIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vPu-t0-0Aa"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -147,7 +150,7 @@
                         <outlet property="passField" destination="gKW-hM-UAG" id="ji2-hl-Hfn"/>
                         <outlet property="stackView" destination="Rz0-MH-6zU" id="Dms-LJ-ySG"/>
                         <outlet property="topConstraint" destination="OOF-JZ-TdY" id="RA3-DV-Jgs"/>
-                        <segue destination="cTQ-ta-aWb" kind="show" identifier="toSignUp" id="9zT-xz-ucJ"/>
+                        <segue destination="cTQ-ta-aWb" kind="presentation" identifier="toSignUp" modalTransitionStyle="crossDissolve" id="9zT-xz-ucJ"/>
                         <segue destination="rch-PP-Atz" kind="show" identifier="toHomeFromSignIn" id="JNK-Vi-tRg"/>
                     </connections>
                 </viewController>
@@ -316,7 +319,7 @@
                         <outlet property="passField" destination="Vyp-jf-Uim" id="ECx-GQ-HYl"/>
                         <outlet property="stackView" destination="sH5-rp-HIa" id="hP0-YF-lS8"/>
                         <outlet property="topConstraint" destination="PbR-3C-uCE" id="TK1-Mn-ZN4"/>
-                        <segue destination="rch-PP-Atz" kind="show" identifier="toHomeFromSignUp" id="eBf-Ft-03g"/>
+                        <segue destination="rch-PP-Atz" kind="presentation" identifier="toHomeFromSignUp" modalTransitionStyle="flipHorizontal" id="eBf-Ft-03g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eXq-ri-hvT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -350,8 +353,11 @@
                                 <items>
                                     <navigationItem id="Svn-an-Gdv">
                                         <nil key="title"/>
-                                        <barButtonItem key="leftBarButtonItem" image="Logout" id="1pg-hp-v4R">
+                                        <barButtonItem key="leftBarButtonItem" image="Logout" id="1pg-hp-v4R" userLabel="Logout">
                                             <color key="tintColor" red="0.59999999999999998" green="0.90588235289999997" blue="0.77647058820000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="handleLogout:" destination="rch-PP-Atz" id="3Md-Et-GRR"/>
+                                            </connections>
                                         </barButtonItem>
                                         <view key="titleView" contentMode="scaleToFill" id="HtJ-CG-hdw">
                                             <rect key="frame" x="124.66666666666669" y="5.6666666666666679" width="165" height="33"/>
@@ -370,8 +376,11 @@
                                                 <constraint firstAttribute="bottom" secondItem="Ec3-am-RB2" secondAttribute="bottom" id="qiM-bq-YDD"/>
                                             </constraints>
                                         </view>
-                                        <barButtonItem key="rightBarButtonItem" image="Search" id="9gU-Vq-Hbs">
+                                        <barButtonItem key="rightBarButtonItem" image="Search" id="9gU-Vq-Hbs" userLabel="Search">
                                             <color key="tintColor" red="0.85882352939999995" green="0.52941176469999995" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="handleSearch:" destination="rch-PP-Atz" id="yIn-nc-nYV"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>

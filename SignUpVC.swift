@@ -26,7 +26,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     var originalTopConstraint: CGFloat!
     var activeField: UITextField?
     
-    // MARK:- INITIALIZATION FUNCTIONS
+    // MARK:- INITIALIZATION/HELPER FUNCTIONS
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -198,7 +198,11 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                 
                 print("DANNY: Created new user in the DB")
                 
-                self.performSegue(withIdentifier: "toHomeFromSignUp", sender: self)
+                // Dismiss this VC
+                self.dismiss(animated: true, completion: {
+                    // Go to the Home screen
+                    self.performSegue(withIdentifier: "toHomeFromSignUp", sender: self)
+                })
             })
         }
     }

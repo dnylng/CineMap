@@ -171,7 +171,26 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         performSegue(withIdentifier: "toSignUp", sender: self)
     }
     
-    
+    // Handles what happens when user presses sign in
+    @IBAction func handleSignIn(_ sender: Any) {
+        // Form validation
+        guard let email = emailField.text, let pass = passField.text else {
+            print("DANNY: Email or password is not valid")
+            return
+        }
+        
+        // Sign into Firebase with email and password
+        Auth.auth().signIn(withEmail: email, password: pass) { (user, error) in
+            if error != nil {
+                print("DANNY: \(error!)")
+                return
+            }
+            
+            print("DANNY: Successfully signed in with email and password")
+            
+            self.performSegue(withIdentifier: "toHomeFromSignIn", sender: self)
+        }
+    }
 
 }
 
