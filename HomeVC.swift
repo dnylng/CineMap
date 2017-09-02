@@ -13,12 +13,28 @@ import GoogleSignIn
 
 class HomeVC: UIViewController {
     
+    // MARK:- IBOUTLETS
+    
+    @IBOutlet weak var viewButtonHeight: NSLayoutConstraint!
+    
+    // MARK:- INITIALIZATION
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        resizeViewButtons()
     }
     
     override func viewDidAppear(_ animated: Bool) {
 
+    }
+    
+    // MARK:- NAVIGATION BAR FUNCTIONS
+    
+    fileprivate func resizeViewButtons() {
+        let screen = UIScreen.main.bounds
+        viewButtonHeight.constant = screen.width / 12
+        print("DANNY: View button height \(viewButtonHeight.constant)")
     }
     
     @IBAction func handleLogout(_ sender: Any) {

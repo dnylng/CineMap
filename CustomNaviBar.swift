@@ -10,11 +10,7 @@ import UIKit
 
 class CustomNaviBar: UINavigationBar {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        setup()
-    }
+    @IBOutlet weak var naviBarHeight: NSLayoutConstraint!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -33,13 +29,8 @@ class CustomNaviBar: UINavigationBar {
         super.draw(rect)
         
         let screen = UIScreen.main.bounds
-        self.frame = CGRect(x: 0, y: 0, width: screen.width, height: screen.height / 8)
-        
-        
-    }
-    
-    override func sizeThatFits(_ size: CGSize) -> CGSize {
-        return CGSize(width: UIScreen.main.bounds.width, height: 100)
+        naviBarHeight.constant = screen.height / 8
+        print("DANNY: Navigation bar height \(naviBarHeight.constant)")
     }
 
 }
