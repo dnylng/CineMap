@@ -11,7 +11,7 @@ import Firebase
 import FBSDKLoginKit
 import GoogleSignIn
 
-class HomeVC: UIViewController {
+class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     // MARK:- IBOUTLETS
     
@@ -21,11 +21,13 @@ class HomeVC: UIViewController {
     @IBOutlet weak var homeButton: CustomButton!
     @IBOutlet weak var movieButton: CustomButton!
     @IBOutlet weak var selectedImage: UIImageView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     // MARK:- VARIABLES
     
     var viewButtons: [CustomButton]!
     var selectedButton: Int!
+    let cellId = "ViewCell"
     
     // MARK:- INITIALIZATION
     
@@ -33,6 +35,13 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         
         resizeViewButtons()
+        
+        // Init the collection view
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.minimumLineSpacing = 0
+        }
         
         // Init the viewButtons array with our buttons
         viewButtons = [tvButton, homeButton, movieButton]
@@ -63,18 +72,69 @@ class HomeVC: UIViewController {
         moveSelectedImage(button: tvButton)
 
         selectedButton = 0
+        scrollToViewIndex(index: selectedButton)
     }
     
     @IBAction func handleHome(_ sender: Any) {
         moveSelectedImage(button: homeButton)
         
         selectedButton = 1
+        scrollToViewIndex(index: selectedButton)
     }
     
     @IBAction func handleMovie(_ sender: Any) {
         moveSelectedImage(button: movieButton)
 
         selectedButton = 2
+        scrollToViewIndex(index: selectedButton)
+    }
+    
+    fileprivate func scrollToViewIndex(index: Int) {
+        let indexPath = IndexPath(item: index, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: [], animated: true)
+    }
+    
+    // MARK:- VIEW CELL FUNCTIONS
+    
+    // Returns the number of cells there are
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    // Returns the cell bahavior
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        
+        let colors = [UIColor.red, UIColor.green, UIColor.blue]
+        cell.backgroundColor = colors[indexPath.item]
+        
+        return cell
+    }
+    
+    // Returns cell size
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+    
+    // Handles scrolling functionality
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let x = scrollView.contentOffset.x
+        print(x)
+        
+        
+        switch x {
+        case 0:
+            handleTV(self)
+            
+        case collectionView.frame.width:
+            handleHome(self)
+            
+        case collectionView.frame.width * 2:
+            handleMovie(self)
+            
+        default:
+            break
+        }
     }
     
     // MARK:- NAVIGATION BAR FUNCTIONS
