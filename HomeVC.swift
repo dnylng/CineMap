@@ -27,7 +27,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     var viewButtons: [CustomButton]!
     var selectedButton: Int!
-    let cellId = "ViewCell"
+    let cellId = "HomeCell"
     
     // MARK:- INITIALIZATION
     
@@ -50,7 +50,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     }
     
     override func viewDidAppear(_ animated: Bool) {
-
+        // Start the view at home
+        scrollToViewIndex(index: 1)
     }
     
     // MARK:- SELECTED VIEW FUNCTIONS
@@ -103,25 +104,23 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     // Returns the cell bahavior
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        // Make a reuseable cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        
-        let colors = [UIColor.red, UIColor.green, UIColor.blue]
-        cell.backgroundColor = colors[indexPath.item]
         
         return cell
     }
     
-    // Returns cell size
+    // Returns cell size which is the width/height of collectionview
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
     
     // Handles scrolling functionality
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // Get the x position of the current scrollview
         let x = scrollView.contentOffset.x
-        print(x)
         
-        
+        // If on 1st cell, go to TV; if on 2nd cell, go to home; if on 3rd cell, go to movie
         switch x {
         case 0:
             handleTV(self)
