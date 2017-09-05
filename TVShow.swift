@@ -11,7 +11,6 @@ import UIKit
 class TVShow: Movie {
     
     private var _numOfSeasons: Int!
-    private var _numOfEpisodes: Int!
     private var _onSeason: Int!
     private var _onEpisode: Int!
     
@@ -22,16 +21,6 @@ class TVShow: Movie {
         
         set {
             _numOfSeasons = newValue
-        }
-    }
-    
-    var numOfEpisodes: Int {
-        get {
-            return _numOfEpisodes
-        }
-        
-        set {
-            _numOfEpisodes = newValue
         }
     }
     
@@ -53,6 +42,14 @@ class TVShow: Movie {
         set {
             _onEpisode = newValue
         }
+    }
+    
+    init(title: String, summary: String, cast: [Person], id: String, imageUrl: String, numOfSeasons: Int, onSeason: Int) {
+        super.init(title: title, summary: summary, cast: cast, id: id, imageUrl: imageUrl)
+        
+        self._numOfSeasons = numOfSeasons
+        self._onSeason = onSeason
+        self._onEpisode = 0
     }
 
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class Movie: NSObject {
 
+    private var _id: String!
     private var _imageUrl: String!
     private var _title: String!
     private var _summary: String!
@@ -20,13 +21,23 @@ class Movie: NSObject {
         case unwatched, planToWatch, currentlyWatching, completed
     }
     
+    var id: String {
+        get {
+            return _id
+        }
+        
+        set {
+            _id = newValue
+        }
+    }
+    
     var imageUrl: String {
         get {
             return _imageUrl
         }
         
         set {
-            _imageUrl = newValue
+            _imageUrl = imageUrl
         }
     }
     
@@ -68,6 +79,15 @@ class Movie: NSObject {
         set {
             _status = newValue
         }
+    }
+    
+    init(title: String, summary: String, cast: [Person], id: String, imageUrl: String) {
+        self._title = title
+        self._summary = summary
+        self._cast = cast
+        self._status = Status.unwatched
+        self._id = id
+        self._imageUrl = imageUrl
     }
     
 }

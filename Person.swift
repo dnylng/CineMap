@@ -51,4 +51,10 @@ class Person: NSObject {
         }
     }
     
+    init(firstName: String, lastName: String, imageUrl: String) {
+        self._firstName = firstName
+        self._lastName = lastName
+        self._imageUrl = imageUrl
+    }
+    
 }
