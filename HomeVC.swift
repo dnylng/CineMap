@@ -27,7 +27,10 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     var viewButtons: [CustomButton]!
     var selectedButton: Int!
-    let cellId = "HomeCell"
+    
+    let homeCell = "HomeCell"
+    let tvCell = "TVCell"
+    let movieCell = "MovieCell"
     
     // MARK:- INITIALIZATION
     
@@ -105,7 +108,19 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     // Returns the cell bahavior
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // Make a reuseable cell
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        var cell: UICollectionViewCell!
+        
+        // Return the view depending on the index
+        switch indexPath.row {
+        case 0:
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: tvCell, for: indexPath)
+        case 1:
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: homeCell, for: indexPath)
+        case 2:
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: movieCell, for: indexPath)
+        default:
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: homeCell, for: indexPath)
+        }
         
         return cell
     }
