@@ -14,10 +14,10 @@ import UIKit
 
 class TMDBObject: NSObject {
 
-    private var _id: String!
+    private var _id: Int!
     private var _imageUrl: String!
     
-    var id: String {
+    var id: Int {
         get {
             return _id
         }
@@ -37,7 +37,7 @@ class TMDBObject: NSObject {
         }
     }
     
-    init(id: String, imageUrl: String) {
+    init(id: Int, imageUrl: String) {
         self._id = id
         self._imageUrl = imageUrl
     }

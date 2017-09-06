@@ -7,23 +7,22 @@
 //
 
 import UIKit
+import TMDBSwift
 
 class TMDBCollection: UICollectionView, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     // MARK:- VARIABLES
     
-    var tvShows: [TMDBObject] = {
-        let gameOfThrones = TMDBObject(id: "1399", imageUrl: "https://image.tmdb.org/t/p/w640/ijKEdinAQUfYNQTKfrhGnSdm5HQ.jpg")
-        let breakingBad = TMDBObject(id: "1396", imageUrl: "https://image.tmdb.org/t/p/w640/1yeVJox3rjo2jBKrrihIMj7uoS9.jpg")
-        let suits = TMDBObject(id: "37680", imageUrl: "https://image.tmdb.org/t/p/w640/i6Iu6pTzfL6iRWhXuYkNs8cPdJF.jpg")
-        return [gameOfThrones, breakingBad, suits]
-    }()
+    var tvShows: [TMDBObject] = []
     
     let cellId = "TMDBCell"
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
+    override func awakeFromNib() {
+        collectionViewSetup()
+        tvCollectionSetup()
+    }
+    
+    fileprivate func collectionViewSetup() {
         dataSource = self
         delegate = self
         
@@ -32,7 +31,31 @@ class TMDBCollection: UICollectionView, UICollectionViewDataSource, UICollection
         }
     }
     
+    fileprivate func tvCollectionSetup() {
+        TVMDB.popular(TMDB_API_KEY, page: 1, language: "en") { (clientReturn, apiReturn) in
+            let tv = apiReturn
+            
+            for obj in tv! {
+                var imageUrl: String!
+                guard let id = obj.id else { return }
+                if obj.poster_path != nil {
+                    imageUrl = ("\(IMAGE_URL_PREFIX_S)\(obj.poster_path!)")
+                } else {
+                    imageUrl = ""
+                }
+                
+                let tvShow = TMDBObject(id: id, imageUrl: imageUrl)
+                print("DANNY: \(tvShow.imageUrl)")
+                print("DANNY: \(tvShow.id)")
+                
+                self.tvShows.append(tvShow)
+                self.reloadData()
+            }
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("DANNY: \(self.tvShows.count)")
         return tvShows.count
     }
     
@@ -42,7 +65,7 @@ class TMDBCollection: UICollectionView, UICollectionViewDataSource, UICollection
         
         // Set the TMDB id and image
         cell.id = tvShows[indexPath.item].id
-        if let url = URL(string: tvShows[indexPath.item].imageUrl) {
+        if let url = URL(string: (tvShows[indexPath.item].imageUrl)) {
             downloadImage(url: url, imageView: cell.image)
         }
         
@@ -64,11 +87,11 @@ class TMDBCollection: UICollectionView, UICollectionViewDataSource, UICollection
     }
     
     fileprivate func downloadImage(url: URL, imageView: UIImageView) {
-        print("Download Started")
+        print("DANNY: Download Started")
         getDataFromUrl(url: url) { (data, response, error)  in
             guard let data = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
+            print("DANNY: \(response?.suggestedFilename ?? url.lastPathComponent)")
+            print("DANNY: Download Finished")
             DispatchQueue.main.async() { () -> Void in
                 imageView.image = UIImage(data: data)
             }

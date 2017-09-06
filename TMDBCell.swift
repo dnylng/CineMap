@@ -14,6 +14,6 @@ class TMDBCell: UICollectionViewCell {
     
     
     var imageUrl: String!
-    var id: String!
+    var id: Int!
     
 }
