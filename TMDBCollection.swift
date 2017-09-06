@@ -54,24 +54,25 @@ class TMDBCollection: UICollectionView, UICollectionViewDataSource, UICollection
         }
     }
     
+    // Returns the size of the tvShows, movies, discoveries array
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("DANNY: \(self.tvShows.count)")
         return tvShows.count
     }
     
+    // Sets the id and image for the cells
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // Make a reuseable cell
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! TMDBCell
         
         // Set the TMDB id and image
         cell.id = tvShows[indexPath.item].id
-        if let url = URL(string: (tvShows[indexPath.item].imageUrl)) {
-            downloadImage(url: url, imageView: cell.image)
-        }
+        downloadImage(urlString: tvShows[indexPath.item].imageUrl, imageView: cell.image)
         
         return cell
     }
     
+    // Each tv show/movie cell has to keep the aspect ratio of 185/278
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let ratio: CGFloat = 185/278
         let width = ratio * CGFloat(self.frame.height)
@@ -79,23 +80,45 @@ class TMDBCollection: UICollectionView, UICollectionViewDataSource, UICollection
         return size
     }
     
-    fileprivate func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
-        URLSession.shared.dataTask(with: url) {
-            (data, response, error) in
-            completion(data, response, error)
-            }.resume()
-    }
+    let imageCache = NSCache<NSString, UIImage>()
     
-    fileprivate func downloadImage(url: URL, imageView: UIImageView) {
-        print("DANNY: Download Started")
-        getDataFromUrl(url: url) { (data, response, error)  in
-            guard let data = data, error == nil else { return }
-            print("DANNY: \(response?.suggestedFilename ?? url.lastPathComponent)")
-            print("DANNY: Download Finished")
-            DispatchQueue.main.async() { () -> Void in
-                imageView.image = UIImage(data: data)
-            }
+    // Downloads image from url string
+    fileprivate func downloadImage(urlString: String, imageView: UIImageView) {
+        guard let url = URL(string: urlString) else { return }
+        
+        // Clear the image for testing
+        imageView.image = nil
+        
+        // If image is already cached, then set image and return
+        if let imageFromCache = imageCache.object(forKey: urlString as NSString) {
+            imageView.image = imageFromCache
+            return
         }
+
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            // Check for errors
+            if error != nil {
+                print("DANNY: \(error!)")
+                return
+            }
+            
+            // Guard the data
+            guard let data = data else { return }
+
+            print("DANNY: Download from \(urlString) finished")
+            
+            // Asynchronously download and set images in cache
+            DispatchQueue.main.async() { () -> Void in
+                let imageToCache = UIImage(data: data)
+                
+                // If image hasn't been cached yet, then set the image
+                if self.imageCache.object(forKey: urlString as NSString) == nil {
+                    imageView.image = imageToCache
+                }
+                
+                // Cache the image
+                self.imageCache.setObject(imageToCache!, forKey: urlString as NSString)
+            }
+        }.resume()
     }
-    
 }
