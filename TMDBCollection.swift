@@ -13,15 +13,20 @@ class TMDBCollection: UICollectionView, UICollectionViewDataSource, UICollection
     
     // MARK:- VARIABLES
     
-    var tvShows: [TMDBObject] = []
+    var tmdbObjects: [TMDBObject] = []
     
     let cellId = "TMDBCell"
     
-    override func awakeFromNib() {
-        collectionViewSetup()
-        tvCollectionSetup()
+    enum Collection {
+        case tv, movie, airing
     }
     
+    // MARK:- INITIALIZATION
+    override func awakeFromNib() {
+        collectionViewSetup()
+    }
+    
+    // Sets datasource and delegate for the collection view
     fileprivate func collectionViewSetup() {
         dataSource = self
         delegate = self
@@ -31,33 +36,87 @@ class TMDBCollection: UICollectionView, UICollectionViewDataSource, UICollection
         }
     }
     
-    fileprivate func tvCollectionSetup() {
-        TVMDB.popular(TMDB_API_KEY, page: 1, language: "en") { (clientReturn, apiReturn) in
-            let tv = apiReturn
-            
-            for obj in tv! {
-                var imageUrl: String!
-                guard let id = obj.id else { return }
-                if obj.poster_path != nil {
-                    imageUrl = ("\(IMAGE_URL_PREFIX_S)\(obj.poster_path!)")
-                } else {
-                    imageUrl = ""
+    // Setup array depending on type of collection tv, movie, or discover
+    func collectionArraySetup(collection: Collection) {
+        if collection == Collection.tv {
+            TVMDB.popular(TMDB_API_KEY, page: 1, language: "en") { (clientReturn, tvDB) in
+                
+                // Grab each obj in the tv database
+                for obj in tvDB! {
+                    
+                    // Set up vars
+                    var imageUrl: String!
+                    guard let id = obj.id else { return }
+                    if obj.poster_path != nil {
+                        imageUrl = ("\(IMAGE_URL_PREFIX_S)\(obj.poster_path!)")
+                    } else {
+                        imageUrl = ""
+                    }
+                    
+                    // Create a TMDBObject out of the array info
+                    let tvShow = TMDBObject(id: id, imageUrl: imageUrl)
+                    print("DANNY: from tv \(tvShow.imageUrl)")
+                    print("DANNY: from tv \(tvShow.id)")
+                    
+                    self.tmdbObjects.append(tvShow)
+                    self.reloadData()
                 }
-                
-                let tvShow = TMDBObject(id: id, imageUrl: imageUrl)
-                print("DANNY: \(tvShow.imageUrl)")
-                print("DANNY: \(tvShow.id)")
-                
-                self.tvShows.append(tvShow)
-                self.reloadData()
             }
+        } else if collection == Collection.movie {
+            MovieMDB.popular(TMDB_API_KEY, language: "en", page: 1, completion: { (clientReturn, movieDB) in
+                
+                // Grab each obj in the movie database
+                for obj in movieDB! {
+                    
+                    // Set up vars
+                    var imageUrl: String!
+                    guard let id = obj.id else { return }
+                    if obj.poster_path != nil {
+                        imageUrl = ("\(IMAGE_URL_PREFIX_S)\(obj.poster_path!)")
+                    } else {
+                        imageUrl = ""
+                    }
+                    
+                    // Create a TMDBObject out of the array info
+                    let movie = TMDBObject(id: id, imageUrl: imageUrl)
+                    print("DANNY: from movie \(movie.imageUrl)")
+                    print("DANNY: from movie \(movie.id)")
+                    
+                    self.tmdbObjects.append(movie)
+                    self.reloadData()
+                }
+            })
+        } else if collection == Collection.airing {
+            TVMDB.ontheair(TMDB_API_KEY, page: 1, language: "en", completion: { (clientReturn, tvDB) in
+                
+                // Grab each obj in the tv database
+                for obj in tvDB! {
+                    
+                    // Set up vars
+                    var imageUrl: String!
+                    guard let id = obj.id else { return }
+                    if obj.poster_path != nil {
+                        imageUrl = ("\(IMAGE_URL_PREFIX_S)\(obj.poster_path!)")
+                    } else {
+                        imageUrl = ""
+                    }
+                    
+                    // Create a TMDBObject out of the array info
+                    let tvShow = TMDBObject(id: id, imageUrl: imageUrl)
+                    print("DANNY: from airing \(tvShow.imageUrl)")
+                    print("DANNY: from airing \(tvShow.id)")
+                    
+                    self.tmdbObjects.append(tvShow)
+                    self.reloadData()
+                }
+            })
         }
     }
-    
+
     // Returns the size of the tvShows, movies, discoveries array
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("DANNY: \(self.tvShows.count)")
-        return tvShows.count
+        print("DANNY: \(self.tmdbObjects.count)")
+        return tmdbObjects.count
     }
     
     // Sets the id and image for the cells
@@ -66,8 +125,8 @@ class TMDBCollection: UICollectionView, UICollectionViewDataSource, UICollection
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! TMDBCell
         
         // Set the TMDB id and image
-        cell.id = tvShows[indexPath.item].id
-        downloadImage(urlString: tvShows[indexPath.item].imageUrl, imageView: cell.image)
+        cell.id = tmdbObjects[indexPath.item].id
+        downloadImage(urlString: tmdbObjects[indexPath.item].imageUrl, imageView: cell.image)
         
         return cell
     }
