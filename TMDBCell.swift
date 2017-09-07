@@ -10,8 +10,8 @@ import UIKit
 
 class TMDBCell: UICollectionViewCell {
     
-    @IBOutlet weak var image: UIImageView!
-    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var button: UIButton!
     
     var imageUrl: String!
     var id: Int!

@@ -126,7 +126,7 @@ class TMDBCollection: UICollectionView, UICollectionViewDataSource, UICollection
         
         // Set the TMDB id and image
         cell.id = tmdbObjects[indexPath.item].id
-        downloadImage(urlString: tmdbObjects[indexPath.item].imageUrl, imageView: cell.image)
+        downloadImage(urlString: tmdbObjects[indexPath.item].imageUrl, imageView: cell.imageView)
         
         return cell
     }
