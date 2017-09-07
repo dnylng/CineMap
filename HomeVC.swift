@@ -22,6 +22,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     @IBOutlet weak var movieButton: CustomButton!
     @IBOutlet weak var selectedImage: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var blurBackground: UIVisualEffectView!
     
     // MARK:- VARIABLES
     
@@ -50,9 +51,13 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         viewButtons = [tvButton, homeButton, movieButton]
         selectedButton = viewButtons.index(of: homeButton)
         print("DANNY: Selected button is \(selectedButton!)")
+        
+        blurBackground.alpha = 0
     }
     
+    // When view loads up, move to home view
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         // Start the view at home
         scrollToViewIndex(index: 1)
     }
@@ -179,4 +184,21 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     @IBAction func handleSearch(_ sender: Any) {
         // TODO: Implement search function
     }
+    
+    // MARK:- MORE INFORMATION FUNCTIONS
+    
+    @IBAction func handleInfo(_ sender: Any) {
+        UIView.animate(withDuration: 0.50) {
+            self.blurBackground.alpha = 1
+        }
+        
+        performSegue(withIdentifier: "toInfo", sender: self)
+    }
+    
+    @IBAction func unwindToHome(segue:UIStoryboardSegue) {
+        UIView.animate(withDuration: 0.50) {
+            self.blurBackground.alpha = 0
+        }
+    }
+    
 }
