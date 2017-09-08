@@ -484,7 +484,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="70" height="110"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0r8-08-SoA">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0r8-08-SoA" customClass="PosterImageView" customModule="CineMap" customModuleProvider="target">
                                                                         <rect key="frame" x="8" y="8" width="62" height="94"/>
                                                                     </imageView>
                                                                 </subviews>
@@ -521,7 +521,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="70" height="110"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1qf-Pm-qDM">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1qf-Pm-qDM" customClass="PosterImageView" customModule="CineMap" customModuleProvider="target">
                                                                         <rect key="frame" x="8" y="8" width="62" height="94"/>
                                                                     </imageView>
                                                                 </subviews>
@@ -558,7 +558,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="70" height="110"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0SJ-SI-PHX">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0SJ-SI-PHX" customClass="PosterImageView" customModule="CineMap" customModuleProvider="target">
                                                                         <rect key="frame" x="8" y="8" width="62" height="94"/>
                                                                     </imageView>
                                                                 </subviews>
