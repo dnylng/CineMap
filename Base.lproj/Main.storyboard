@@ -514,27 +514,28 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TMDBCell" id="jRP-KR-yT0" customClass="TMDBCell" customModule="CineMap" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TMDBCell" id="uaD-rZ-6nL" customClass="TMDBCell" customModule="CineMap" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="10.333333333333334" width="70" height="110"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                 <rect key="frame" x="0.0" y="0.0" width="70" height="110"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aNm-YU-NXp">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1qf-Pm-qDM">
                                                                         <rect key="frame" x="8" y="8" width="62" height="94"/>
                                                                     </imageView>
                                                                 </subviews>
                                                             </view>
                                                             <constraints>
-                                                                <constraint firstAttribute="bottom" secondItem="aNm-YU-NXp" secondAttribute="bottom" constant="8" id="LHV-qa-0VF"/>
-                                                                <constraint firstAttribute="trailing" secondItem="aNm-YU-NXp" secondAttribute="trailing" id="goG-51-eZP"/>
-                                                                <constraint firstItem="aNm-YU-NXp" firstAttribute="top" secondItem="jRP-KR-yT0" secondAttribute="top" constant="8" id="lMu-Ag-WIu"/>
-                                                                <constraint firstItem="aNm-YU-NXp" firstAttribute="leading" secondItem="jRP-KR-yT0" secondAttribute="leading" constant="8" id="m9H-4f-dua"/>
+                                                                <constraint firstItem="1qf-Pm-qDM" firstAttribute="leading" secondItem="uaD-rZ-6nL" secondAttribute="leading" constant="8" id="gr3-uC-lso"/>
+                                                                <constraint firstAttribute="bottom" secondItem="1qf-Pm-qDM" secondAttribute="bottom" constant="8" id="qnN-n9-leN"/>
+                                                                <constraint firstItem="1qf-Pm-qDM" firstAttribute="top" secondItem="uaD-rZ-6nL" secondAttribute="top" constant="8" id="uoo-t1-3Pf"/>
+                                                                <constraint firstAttribute="trailing" secondItem="1qf-Pm-qDM" secondAttribute="trailing" id="xr5-so-CUz"/>
                                                             </constraints>
                                                             <size key="customSize" width="70" height="110"/>
                                                             <connections>
-                                                                <outlet property="imageView" destination="aNm-YU-NXp" id="x0O-Gs-iqh"/>
+                                                                <outlet property="imageView" destination="1qf-Pm-qDM" id="qbq-F4-6QR"/>
+                                                                <segue destination="etN-Pt-p2u" kind="presentation" identifier="toInfo" modalPresentationStyle="overCurrentContext" id="FMo-pc-V1s"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -550,27 +551,28 @@
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TMDBCell" id="JIV-cB-vmN" customClass="TMDBCell" customModule="CineMap" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TMDBCell" id="5nk-8i-xDQ" customClass="TMDBCell" customModule="CineMap" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="10" width="70" height="110"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                 <rect key="frame" x="0.0" y="0.0" width="70" height="110"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aR7-di-pa0">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0SJ-SI-PHX">
                                                                         <rect key="frame" x="8" y="8" width="62" height="94"/>
                                                                     </imageView>
                                                                 </subviews>
                                                             </view>
                                                             <constraints>
-                                                                <constraint firstItem="aR7-di-pa0" firstAttribute="top" secondItem="JIV-cB-vmN" secondAttribute="top" constant="8" id="3jm-tS-cQp"/>
-                                                                <constraint firstAttribute="trailing" secondItem="aR7-di-pa0" secondAttribute="trailing" id="6OB-hl-53v"/>
-                                                                <constraint firstItem="aR7-di-pa0" firstAttribute="leading" secondItem="JIV-cB-vmN" secondAttribute="leading" constant="8" id="Xi9-7T-tNq"/>
-                                                                <constraint firstAttribute="bottom" secondItem="aR7-di-pa0" secondAttribute="bottom" constant="8" id="beG-zS-C5D"/>
+                                                                <constraint firstItem="0SJ-SI-PHX" firstAttribute="leading" secondItem="5nk-8i-xDQ" secondAttribute="leading" constant="8" id="GQa-10-V30"/>
+                                                                <constraint firstAttribute="bottom" secondItem="0SJ-SI-PHX" secondAttribute="bottom" constant="8" id="Uae-WG-lm2"/>
+                                                                <constraint firstAttribute="trailing" secondItem="0SJ-SI-PHX" secondAttribute="trailing" id="hsT-fA-3It"/>
+                                                                <constraint firstItem="0SJ-SI-PHX" firstAttribute="top" secondItem="5nk-8i-xDQ" secondAttribute="top" constant="8" id="uSf-Zw-VAM"/>
                                                             </constraints>
                                                             <size key="customSize" width="70" height="110"/>
                                                             <connections>
-                                                                <outlet property="imageView" destination="aR7-di-pa0" id="QPa-nT-8fz"/>
+                                                                <outlet property="imageView" destination="0SJ-SI-PHX" id="nOB-xD-6kn"/>
+                                                                <segue destination="etN-Pt-p2u" kind="presentation" identifier="toInfo" modalPresentationStyle="overCurrentContext" id="IBf-8I-ZS5"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -916,5 +918,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="JNK-Vi-tRg"/>
+        <segue reference="ROF-Ho-BWg"/>
     </inferredMetricsTieBreakers>
 </document>
