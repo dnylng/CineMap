@@ -26,8 +26,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     // MARK:- VARIABLES
     
-    var viewButtons: [CustomButton]!
-    var selectedButton: Int!
+    private var viewButtons: [CustomButton]!
+    private var selectedButton: Int!
     
     let homeCell = "HomeCell"
     let tvCell = "TVCell"
@@ -185,14 +185,12 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         // TODO: Implement search function
     }
     
-    // MARK:- MORE INFORMATION FUNCTIONS
+    // MARK:- INFORMATION FUNCTIONS
     
-    @IBAction func handleInfo(_ sender: Any) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         UIView.animate(withDuration: 0.50) {
-            self.blurBackground.alpha = 1
+            self.blurBackground.alpha = 0.80
         }
-        
-        performSegue(withIdentifier: "toInfo", sender: self)
     }
     
     @IBAction func unwindToHome(segue:UIStoryboardSegue) {

@@ -23,8 +23,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     
     // MARK:- VARIABLES
     
-    var originalTopConstraint: CGFloat!
-    var activeField: UITextField?
+    private var originalTopConstraint: CGFloat!
+    private var activeField: UITextField?
     
     // MARK:- INITIALIZATION
     

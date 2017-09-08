@@ -10,5 +10,5 @@ import Foundation
 
 // The API Key for TheMovieDB
 let TMDB_API_KEY = "5107c38310d2faa6938caedf92333fa0"
-let IMAGE_URL_PREFIX_S = "https://image.tmdb.org/t/p/w300"
-let IMAGE_URL_PREFIX_L = "https://image.tmdb.org/t/p/w500"
+let IMAGE_URL_PREFIX = "https://image.tmdb.org/t/p/w300"
+let language = "en"

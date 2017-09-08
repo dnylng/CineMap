@@ -11,9 +11,9 @@ import UIKit
 class TMDBCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var button: UIButton!
     
     var imageUrl: String!
     var id: Int!
+    var tmdbType: TMDBType!
     
 }

@@ -12,10 +12,15 @@
 
 import UIKit
 
+enum TMDBType {
+    case tv, movie
+}
+
 class TMDBObject: NSObject {
 
     private var _id: Int!
     private var _imageUrl: String!
+    private var _tmdbType: TMDBType!
     
     var id: Int {
         get {
@@ -37,9 +42,20 @@ class TMDBObject: NSObject {
         }
     }
     
-    init(id: Int, imageUrl: String) {
+    var tmdbType: TMDBType {
+        get {
+            return _tmdbType
+        }
+        
+        set {
+            _tmdbType = newValue
+        }
+    }
+    
+    init(id: Int, imageUrl: String, tmdbType: TMDBType) {
         self._id = id
         self._imageUrl = imageUrl
+        self._tmdbType = tmdbType
     }
     
 }

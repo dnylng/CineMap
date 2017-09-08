@@ -34,12 +34,14 @@ class TMDBCollection: UICollectionView, UICollectionViewDataSource, UICollection
         if let flowLayout = self.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.minimumLineSpacing = 0
         }
+        
+        reloadData()
     }
     
     // Setup array depending on type of collection tv, movie, or discover
     func collectionArraySetup(collection: Collection) {
         if collection == Collection.tv {
-            TVMDB.popular(TMDB_API_KEY, page: 1, language: "en") { (clientReturn, tvDB) in
+            TVMDB.popular(TMDB_API_KEY, page: 1, language: language) { (clientReturn, tvDB) in
                 
                 // Grab each obj in the tv database
                 for obj in tvDB! {
@@ -48,13 +50,13 @@ class TMDBCollection: UICollectionView, UICollectionViewDataSource, UICollection
                     var imageUrl: String!
                     guard let id = obj.id else { return }
                     if obj.poster_path != nil {
-                        imageUrl = ("\(IMAGE_URL_PREFIX_S)\(obj.poster_path!)")
+                        imageUrl = ("\(IMAGE_URL_PREFIX)\(obj.poster_path!)")
                     } else {
                         imageUrl = ""
                     }
                     
                     // Create a TMDBObject out of the array info
-                    let tvShow = TMDBObject(id: id, imageUrl: imageUrl)
+                    let tvShow = TMDBObject(id: id, imageUrl: imageUrl, tmdbType: .tv)
                     print("DANNY: from tv \(tvShow.imageUrl)")
                     print("DANNY: from tv \(tvShow.id)")
                     
@@ -63,7 +65,7 @@ class TMDBCollection: UICollectionView, UICollectionViewDataSource, UICollection
                 }
             }
         } else if collection == Collection.movie {
-            MovieMDB.popular(TMDB_API_KEY, language: "en", page: 1, completion: { (clientReturn, movieDB) in
+            MovieMDB.popular(TMDB_API_KEY, language: language, page: 1, completion: { (clientReturn, movieDB) in
                 
                 // Grab each obj in the movie database
                 for obj in movieDB! {
@@ -72,13 +74,13 @@ class TMDBCollection: UICollectionView, UICollectionViewDataSource, UICollection
                     var imageUrl: String!
                     guard let id = obj.id else { return }
                     if obj.poster_path != nil {
-                        imageUrl = ("\(IMAGE_URL_PREFIX_S)\(obj.poster_path!)")
+                        imageUrl = ("\(IMAGE_URL_PREFIX)\(obj.poster_path!)")
                     } else {
                         imageUrl = ""
                     }
                     
                     // Create a TMDBObject out of the array info
-                    let movie = TMDBObject(id: id, imageUrl: imageUrl)
+                    let movie = TMDBObject(id: id, imageUrl: imageUrl, tmdbType: .movie)
                     print("DANNY: from movie \(movie.imageUrl)")
                     print("DANNY: from movie \(movie.id)")
                     
@@ -87,7 +89,7 @@ class TMDBCollection: UICollectionView, UICollectionViewDataSource, UICollection
                 }
             })
         } else if collection == Collection.airing {
-            TVMDB.ontheair(TMDB_API_KEY, page: 1, language: "en", completion: { (clientReturn, tvDB) in
+            TVMDB.ontheair(TMDB_API_KEY, page: 1, language: language, completion: { (clientReturn, tvDB) in
                 
                 // Grab each obj in the tv database
                 for obj in tvDB! {
@@ -96,13 +98,13 @@ class TMDBCollection: UICollectionView, UICollectionViewDataSource, UICollection
                     var imageUrl: String!
                     guard let id = obj.id else { return }
                     if obj.poster_path != nil {
-                        imageUrl = ("\(IMAGE_URL_PREFIX_S)\(obj.poster_path!)")
+                        imageUrl = ("\(IMAGE_URL_PREFIX)\(obj.poster_path!)")
                     } else {
                         imageUrl = ""
                     }
                     
                     // Create a TMDBObject out of the array info
-                    let tvShow = TMDBObject(id: id, imageUrl: imageUrl)
+                    let tvShow = TMDBObject(id: id, imageUrl: imageUrl, tmdbType: .tv)
                     print("DANNY: from airing \(tvShow.imageUrl)")
                     print("DANNY: from airing \(tvShow.id)")
                     
@@ -127,6 +129,7 @@ class TMDBCollection: UICollectionView, UICollectionViewDataSource, UICollection
         // Set the TMDB id and image
         cell.id = tmdbObjects[indexPath.item].id
         downloadImage(urlString: tmdbObjects[indexPath.item].imageUrl, imageView: cell.imageView)
+        cell.tmdbType = tmdbObjects[indexPath.item].tmdbType
         
         return cell
     }
@@ -137,6 +140,14 @@ class TMDBCollection: UICollectionView, UICollectionViewDataSource, UICollection
         let width = ratio * CGFloat(self.frame.height)
         let size = CGSize(width: width, height: self.frame.height)
         return size
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = cellForItem(at: indexPath) as! TMDBCell
+        selectedCellId = cell.id
+        selectedCellImage = cell.imageView.image
+        selectedCellType = cell.tmdbType
+        print("DANNY: cell id \(cell.id!)")
     }
     
     let imageCache = NSCache<NSString, UIImage>()

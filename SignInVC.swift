@@ -24,8 +24,8 @@ class SignInVC: UIViewController, UITextFieldDelegate, GIDSignInDelegate, GIDSig
 
     // MARK:- VARIABLES
     
-    var originalTopConstraint: CGFloat!
-    var activeField: UITextField?
+    private var originalTopConstraint: CGFloat!
+    private var activeField: UITextField?
     
     // MARK:- INITIALIZATION FUNCTIONS
     
