@@ -37,11 +37,7 @@ class InfoVC: UIViewController {
         setupPopup()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        print("DANNY: \(selectedCellId)")
-        print("DANNY: \(selectedCellImage)")
-        print("DANNY: \(selectedCellType)")
-        
+    override func viewWillAppear(_ animated: Bool) {
         setupInfo()
     }
     
@@ -53,9 +49,13 @@ class InfoVC: UIViewController {
         if screenWidth <= 320 {
             widthConstraint.constant = 280
             heightConstraint.constant = 448
+            infoTitle.font = infoTitle.font.withSize(14)
+            infoSummary.font = infoSummary.font?.withSize(10)
         } else if screenWidth >= 414 {
             widthConstraint.constant = 373
             heightConstraint.constant = 616
+            infoTitle.font = infoTitle.font.withSize(16)
+            infoSummary.font = infoSummary.font?.withSize(12)
         } else {
             widthConstraint.constant = 335
             heightConstraint.constant = 547
@@ -73,11 +73,13 @@ class InfoVC: UIViewController {
             TVMDB.tv(TMDB_API_KEY, tvShowID: selectedCellId, language: language, completion: { (clientReturn, tvShow) in
                 self.infoTitle.text = tvShow?.name
                 self.infoSummary.text = tvShow?.overview
+                self.infoSummary.setContentOffset(CGPoint.zero, animated: true)
             })
         } else if selectedCellType == .movie {
             MovieMDB.movie(TMDB_API_KEY, movieID: selectedCellId, completion: { (clientReturn, movie) in
                 self.infoTitle.text = movie?.title
                 self.infoSummary.text = movie?.overview
+                self.infoSummary.setContentOffset(CGPoint.zero, animated: false)
             })
         }
     }
