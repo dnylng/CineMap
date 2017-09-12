@@ -25,6 +25,7 @@ class InfoVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     @IBOutlet weak var infoTitle: UILabel!
     @IBOutlet weak var infoSummary: UITextView!
     @IBOutlet weak var castCollection: UICollectionView!
+    @IBOutlet weak var topBilledCast: UILabel!
     
     // MARK:- VARIABLES
     
@@ -69,14 +70,19 @@ class InfoVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
             heightConstraint.constant = 448
             infoTitle.font = infoTitle.font.withSize(14)
             infoSummary.font = infoSummary.font?.withSize(10)
+            topBilledCast.font = topBilledCast.font.withSize(10)
         } else if screenWidth >= 414 {
             widthConstraint.constant = 373
             heightConstraint.constant = 616
-            infoTitle.font = infoTitle.font.withSize(16)
-            infoSummary.font = infoSummary.font?.withSize(12)
+            infoTitle.font = infoTitle.font.withSize(18)
+            infoSummary.font = infoSummary.font?.withSize(14)
+            topBilledCast.font = topBilledCast.font.withSize(14)
         } else {
             widthConstraint.constant = 335
             heightConstraint.constant = 547
+            infoTitle.font = infoTitle.font.withSize(16)
+            infoSummary.font = infoSummary.font?.withSize(12)
+            topBilledCast.font = topBilledCast.font.withSize(12)
         }
     }
     
@@ -190,9 +196,7 @@ class InfoVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     // Each tv show/movie cell has to keep the aspect ratio of 185/278
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let ratio: CGFloat = 300/450
-        let width = ratio * CGFloat(castCollection.frame.height)
-        let size = CGSize(width: width - 12, height: castCollection.frame.height)
+        let size = CGSize(width: castCollection.frame.width / 4.5, height: castCollection.frame.height)
         return size
     }
     
