@@ -102,6 +102,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UICollectionViewDataSourc
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        searchCollection.setContentOffset(searchCollection.contentOffset, animated: false)
         searchCollection.setContentOffset(CGPoint.zero, animated: true)
     }
     
