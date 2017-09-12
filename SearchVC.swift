@@ -17,8 +17,6 @@ class SearchVC: UIViewController, UITextFieldDelegate, UICollectionViewDataSourc
     @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var searchCollection: UICollectionView!
-    @IBOutlet weak var overlayHeight: NSLayoutConstraint!
-    @IBOutlet weak var titleLabel: UILabel!
     
     // MARK:- VARIABLES
     
@@ -60,6 +58,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UICollectionViewDataSourc
     fileprivate func setupCollection() {
         searchCollection.dataSource = self
         searchCollection.delegate = self
+        searchCollection.allowsSelection = true
         
         if let flowLayout = searchCollection.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 10, 0)
@@ -100,6 +99,10 @@ class SearchVC: UIViewController, UITextFieldDelegate, UICollectionViewDataSourc
     // Hide keyboard when user touches outside of the keyboard
     @IBAction func closeKeyboard(_ sender: Any) {
         self.view.endEditing(true)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        searchCollection.setContentOffset(CGPoint.zero, animated: true)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
