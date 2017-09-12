@@ -28,5 +28,4 @@ class IndentSignUpfields: UITextField {
         return UIEdgeInsetsInsetRect(bounds, padding)
     }
 
-
 }

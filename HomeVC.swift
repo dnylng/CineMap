@@ -187,7 +187,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     }
 
     @IBAction func handleSearch(_ sender: Any) {
-        // TODO: Implement search function
+        performSegue(withIdentifier: "toSearch", sender: self)
     }
     
     // MARK:- INFORMATION FUNCTIONS

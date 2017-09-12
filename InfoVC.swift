@@ -29,17 +29,14 @@ class InfoVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     // MARK:- VARIABLES
     
-    let cellId = "CastCell"
+    private let cellId = "CastCell"
     
-    var castArray = [Person]()
-    var id: Int?
+    private var castArray = [Person]()
     
     // MARK:- INITIALIZATION
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("DANNY: ID BABY \(id ?? 0)")
         
         setupPopup()
         setupCollection()
