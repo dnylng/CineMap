@@ -17,6 +17,8 @@ class SearchVC: UIViewController, UITextFieldDelegate, UICollectionViewDataSourc
     @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchField: UITextField!
     @IBOutlet weak var searchCollection: UICollectionView!
+    @IBOutlet weak var overlayHeight: NSLayoutConstraint!
+    @IBOutlet weak var titleLabel: UILabel!
     
     // MARK:- VARIABLES
     
@@ -26,6 +28,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UICollectionViewDataSourc
     private var pageLimit = 1
     private var tmdbObjects: [TMDBObject] = []
     private var prevSearch: String = ""
+    private var fromPaging = false
     
     // MARK:- INITIALIZATION
     
@@ -100,6 +103,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UICollectionViewDataSourc
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
+        fromPaging = false
         search()
     }
     
@@ -125,6 +129,8 @@ class SearchVC: UIViewController, UITextFieldDelegate, UICollectionViewDataSourc
             downloadImage(urlString: tmdbObjects[indexPath.item].imageUrl, imageView: cell.imageView)
         }
         cell.tmdbType = tmdbObjects[indexPath.item].tmdbType
+        cell.title?.text = tmdbObjects[indexPath.item].title
+        cell.overlayHeight?.constant = cell.frame.height / 4
         
         return cell
     }
@@ -140,6 +146,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.item + 1 >= tmdbObjects.count && pageNum + 1 < pageLimit {
             pageNum += 1
+            fromPaging = true
             if searchField.text == "" {
                 searchTopRated()
             } else {
@@ -161,15 +168,17 @@ class SearchVC: UIViewController, UITextFieldDelegate, UICollectionViewDataSourc
                 
                 // Set up vars
                 var imageUrl: String!
-                guard let id = obj.id else { return }
                 if obj.poster_path != nil {
                     imageUrl = ("\(IMAGE_URL_PREFIX)\(obj.poster_path!)")
                 } else {
                     imageUrl = ""
                 }
                 
+                guard let id = obj.id else { return }
+                guard let title = obj.name else { return }
+                
                 // Create a TMDBObject out of the array info
-                let tvShow = TMDBObject(id: id, imageUrl: imageUrl, tmdbType: .tv)
+                let tvShow = TMDBObject(id: id, title: title, imageUrl: imageUrl, tmdbType: .tv)
                 print("DANNY: from search \(tvShow.imageUrl)")
                 print("DANNY: from search \(tvShow.id)")
                 
@@ -187,58 +196,111 @@ class SearchVC: UIViewController, UITextFieldDelegate, UICollectionViewDataSourc
             searchTopRated()
         } else {
             
-            // Check if new search
+            // Check if new search, if not then don't do anything
             if prevSearch != searchField.text {
                 clearImageCache()
                 prevSearch = searchField.text!
-            }
-            
-            // Start a search by API
-            SearchMDB.multiSearch(TMDB_API_KEY, query: searchField.text!, page: pageNum, includeAdult: true, language: language, region: "", completion: { (clientReturn, movieDB, tvDB, personDB) in
                 
-                // Are there any results?
-                if (clientReturn.pageResults?.total_results)! == 0 {
-                    // If no results then clear cache and array
-                    self.clearImageCache()
-                    self.searchCollection.reloadData()
-                } else {
-                    self.pageLimit = (clientReturn.pageResults?.total_pages)!
+                // Start a search by API
+                SearchMDB.multiSearch(TMDB_API_KEY, query: searchField.text!, page: pageNum, includeAdult: true, language: language, region: "", completion: { (clientReturn, movieDB, tvDB, personDB) in
                     
-                    // Grab the json results to parse
-                    if let results = clientReturn.json?["results"].arrayValue {
+                    // Are there any results?
+                    if (clientReturn.pageResults?.total_results)! == 0 {
+                        // If no results then clear cache and array
+                        self.clearImageCache()
+                        self.searchCollection.reloadData()
+                    } else {
+                        self.pageLimit = (clientReturn.pageResults?.total_pages)!
                         
-                        // For each object in results create a tmdbObject
-                        for obj in results {
+                        // Grab the json results to parse
+                        if let results = clientReturn.json?["results"].arrayValue {
                             
-                            // Firstly, check if tv or movie
-                            var type: TMDBType!
-                            if obj["media_type"].stringValue == "tv" {
-                                type = .tv
-                            } else {
-                                type = .movie
+                            // For each object in results create a tmdbObject
+                            for obj in results {
+                                
+                                // Firstly, check if tv or movie
+                                var type: TMDBType!
+                                var title: String!
+                                if obj["media_type"].stringValue == "tv" {
+                                    type = .tv
+                                    title = obj["name"].stringValue
+                                } else {
+                                    type = .movie
+                                    title = obj["title"].stringValue
+                                }
+                                
+                                // Grab image url
+                                var imageUrl: String!
+                                if obj["poster_path"].stringValue != "" {
+                                    imageUrl = ("\(IMAGE_URL_PREFIX)\(obj["poster_path"].stringValue)")
+                                } else {
+                                    imageUrl = ""
+                                }
+                                
+                                // Grab id of tv/movie
+                                let id = obj["id"].intValue
+                                
+                                // Create a TMDBObject out of the array info
+                                let tmdbObject = TMDBObject(id: id, title: title, imageUrl: imageUrl, tmdbType: type)
+                                
+                                // Add object into the array
+                                self.tmdbObjects.append(tmdbObject)
+                                self.searchCollection.reloadData()
                             }
-                            
-                            // Grab image url
-                            var imageUrl: String!
-                            if obj["poster_path"].stringValue != "" {
-                                imageUrl = ("\(IMAGE_URL_PREFIX)\(obj["poster_path"].stringValue)")
-                            } else {
-                                imageUrl = ""
-                            }
-                            
-                            // Grab id of tv or movie
-                            let id = obj["id"].intValue
-                            
-                            // Create a TMDBObject out of the array info
-                            let tmdbObject = TMDBObject(id: id, imageUrl: imageUrl, tmdbType: type)
-                            
-                            // Add object into the array
-                            self.tmdbObjects.append(tmdbObject)
-                            self.searchCollection.reloadData()
                         }
                     }
-                }
-            })
+                })
+            } else if fromPaging {
+                // Start a search by API
+                SearchMDB.multiSearch(TMDB_API_KEY, query: searchField.text!, page: pageNum, includeAdult: true, language: language, region: "", completion: { (clientReturn, movieDB, tvDB, personDB) in
+                    
+                    // Are there any results?
+                    if (clientReturn.pageResults?.total_results)! == 0 {
+                        // If no results then clear cache and array
+                        self.clearImageCache()
+                        self.searchCollection.reloadData()
+                    } else {
+                        self.pageLimit = (clientReturn.pageResults?.total_pages)!
+                        
+                        // Grab the json results to parse
+                        if let results = clientReturn.json?["results"].arrayValue {
+                            
+                            // For each object in results create a tmdbObject
+                            for obj in results {
+                                
+                                // Firstly, check if tv or movie
+                                var type: TMDBType!
+                                var title: String!
+                                if obj["media_type"].stringValue == "tv" {
+                                    type = .tv
+                                    title = obj["name"].stringValue
+                                } else {
+                                    type = .movie
+                                    title = obj["title"].stringValue
+                                }
+                                
+                                // Grab image url
+                                var imageUrl: String!
+                                if obj["poster_path"].stringValue != "" {
+                                    imageUrl = ("\(IMAGE_URL_PREFIX)\(obj["poster_path"].stringValue)")
+                                } else {
+                                    imageUrl = ""
+                                }
+                                
+                                // Grab id of tv/movie
+                                let id = obj["id"].intValue
+                                
+                                // Create a TMDBObject out of the array info
+                                let tmdbObject = TMDBObject(id: id, title: title, imageUrl: imageUrl, tmdbType: type)
+                                
+                                // Add object into the array
+                                self.tmdbObjects.append(tmdbObject)
+                                self.searchCollection.reloadData()
+                            }
+                        }
+                    }
+                })
+            }
         }
     }
     
