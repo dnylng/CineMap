@@ -13,7 +13,7 @@ class PosterImageView: UIImageView {
     override func awakeFromNib() {
         self.layoutIfNeeded()
         
-        layer.cornerRadius = self.frame.height / 20.0
+        layer.cornerRadius = self.frame.height / 15.0
         layer.masksToBounds = true
     }
 

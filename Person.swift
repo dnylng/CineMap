@@ -10,34 +10,27 @@ import UIKit
 
 class Person: NSObject {
 
-    private var _firstName: String!
-    private var _lastName: String!
-    private var _fullName: String!
+    private var _name: String!
+    private var _character: String!
     private var _imageUrl: String!
     
-    var firstName: String {
+    var name: String {
         get {
-            return _firstName
+            return _name
         }
         
         set {
-            _firstName = newValue
+            _name = newValue
         }
     }
     
-    var lastName: String {
+    var character: String {
         get {
-            return _lastName
+            return _character
         }
         
         set {
-            _lastName = newValue
-        }
-    }
-    
-    var fullName: String {
-        get {
-            return "\(firstName) \(lastName)"
+            _character = newValue
         }
     }
     
@@ -51,9 +44,9 @@ class Person: NSObject {
         }
     }
     
-    init(firstName: String, lastName: String, imageUrl: String) {
-        self._firstName = firstName
-        self._lastName = lastName
+    init(name: String, character: String, imageUrl: String) {
+        self._name = name.capitalized
+        self._character = character.capitalized
         self._imageUrl = imageUrl
     }
     

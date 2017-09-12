@@ -39,20 +39,25 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         super.viewDidLoad()
         
         resizeViewButtons()
-        
-        // Init the collection view
+        setupCollection()
+        setupViewButtons()
+        blurBackground.alpha = 0
+    }
+    
+    // Init the collection view
+    fileprivate func setupCollection() {
         collectionView.dataSource = self
         collectionView.delegate = self
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.minimumLineSpacing = 0
         }
-        
-        // Init the viewButtons array with our buttons
+    }
+
+    // Init the viewButtons array with our buttons
+    fileprivate func setupViewButtons() {
         viewButtons = [tvButton, homeButton, movieButton]
         selectedButton = viewButtons.index(of: homeButton)
         print("DANNY: Selected button is \(selectedButton!)")
-        
-        blurBackground.alpha = 0
     }
     
     // When view loads up, move to home view
@@ -103,7 +108,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         collectionView.scrollToItem(at: indexPath, at: [], animated: true)
     }
     
-    // MARK:- VIEW CELL FUNCTIONS
+    // MARK:- COLLECTION FUNCTIONS
     
     // Returns the number of cells there are
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

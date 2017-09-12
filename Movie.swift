@@ -82,7 +82,7 @@ class Movie: NSObject {
     }
     
     init(title: String, summary: String, cast: [Person], id: String, imageUrl: String) {
-        self._title = title
+        self._title = title.capitalized
         self._summary = summary
         self._cast = cast
         self._status = Status.unwatched
