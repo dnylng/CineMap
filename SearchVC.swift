@@ -36,6 +36,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UICollectionViewDataSourc
         setupPopup()
         setupCollection()
         searchTopRated()
+        setupGesture()
         
         searchField.delegate = self
     }
@@ -52,6 +53,13 @@ class SearchVC: UIViewController, UITextFieldDelegate, UICollectionViewDataSourc
         }
         tmdbObjects.removeAll()
         pageNum = 1
+    }
+    
+    fileprivate func setupGesture() {
+        // Programatically add tap gesture that doesn't interfere with other gestures
+        let tap = UITapGestureRecognizer(target: self, action: #selector(closeKeyboard(_:)))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
     }
     
     // Sets the collection
@@ -97,7 +105,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UICollectionViewDataSourc
     }
     
     // Hide keyboard when user touches outside of the keyboard
-    @IBAction func closeKeyboard(_ sender: Any) {
+    func closeKeyboard(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
     
@@ -114,7 +122,7 @@ class SearchVC: UIViewController, UITextFieldDelegate, UICollectionViewDataSourc
     // MARK:- COLLECTION FUNCTIONS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("DANNY: selected a search item")
+        print("DANNY: selected \(indexPath.item)")
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

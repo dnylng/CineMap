@@ -790,13 +790,13 @@
                                         </subviews>
                                     </stackView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sLM-Px-iVK">
-                                        <rect key="frame" x="16.666666666666671" y="16" width="156.66666666666663" height="236"/>
+                                        <rect key="frame" x="16.666666666666671" y="16" width="156.33333333333331" height="236"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="sLM-Px-iVK" secondAttribute="height" multiplier="2:3" id="dSQ-RM-UW8"/>
                                         </constraints>
                                     </imageView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="290-AZ-er3">
-                                        <rect key="frame" x="177.33333333333334" y="24" width="175.33333333333329" height="228"/>
+                                        <rect key="frame" x="177" y="24" width="175.66666666666663" height="228"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="0.59999999999999998" green="0.90588235289999997" blue="0.77647058820000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" red="1" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -804,7 +804,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMl-jE-1mT">
-                                        <rect key="frame" x="181.33333333333334" y="24" width="167.33333333333329" height="0.0"/>
+                                        <rect key="frame" x="181" y="24" width="167.66666666666663" height="0.0"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
                                         <color key="textColor" red="1" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -976,7 +976,7 @@
                                             <constraint firstAttribute="height" constant="1" id="dte-bY-M6N"/>
                                         </constraints>
                                     </view>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="deD-U0-olr">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="deD-U0-olr">
                                         <rect key="frame" x="8" y="49" width="357" height="551"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yRC-Ek-odE">
@@ -1075,9 +1075,6 @@
                             <constraint firstItem="VCm-e1-JCr" firstAttribute="centerX" secondItem="FOV-hV-hXh" secondAttribute="centerX" id="TKD-P0-Htf"/>
                             <constraint firstItem="ftd-nA-Ayq" firstAttribute="top" secondItem="FOV-hV-hXh" secondAttribute="top" id="cgs-1b-Mz8"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="F2R-PV-Z76" appends="YES" id="t7Z-bb-xYq"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="heightConstraint" destination="tzn-22-zQb" id="SwI-e3-N51"/>
@@ -1087,11 +1084,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o17-Py-x7q" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="F2R-PV-Z76" userLabel="closeKeyboard">
-                    <connections>
-                        <action selector="closeKeyboard:" destination="58c-24-71j" id="QfD-pC-eH6"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3182.608695652174" y="0.0"/>
         </scene>
