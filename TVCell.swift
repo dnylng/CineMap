@@ -22,7 +22,17 @@ class TVCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionView
     private var statusButtons: [UIButton]!
     private var selectedStatus: Int!
     
-    let cellId = "EpisodeCell"
+    var cellId: String {
+        get {
+            if selectedStatus == 0 {
+                return "CurrentCell"
+            } else if selectedStatus == 1 {
+                return "PlanCell"
+            } else {
+                return "CompletedCell"
+            }
+        }
+    }
     
     // MARK:- INITIALIZATION
     
@@ -68,4 +78,35 @@ class TVCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionView
         return size
     }
     
+    // MARK:- STATUS BUTTON FUNCTIONS
+    
+    fileprivate func changeFontSize(button: UIButton) {
+        UIView.animate(withDuration: 0.75) { 
+            for btn in self.statusButtons {
+                if btn == button {
+                    btn.titleLabel!.font = UIFont(name: "AvenirNext-DemiBold", size: 16)
+                } else {
+                    btn.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 12)
+                }
+            }
+        }
+    }
+    
+    @IBAction func handleCurrentlyWatching(_ sender: Any) {
+        selectedStatus = statusButtons.index(of: currentlyWatchingBtn)
+        changeFontSize(button: currentlyWatchingBtn)
+        print("DANNY: CURRENTLY WATCHING pressed")
+    }
+    
+    @IBAction func handlePlanToWatch(_ sender: Any) {
+        selectedStatus = statusButtons.index(of: planToWatchBtn)
+        changeFontSize(button: planToWatchBtn)
+        print("DANNY: PLAN TO WATCH pressed")
+    }
+    
+    @IBAction func handleCompleted(_ sender: Any) {
+        selectedStatus = statusButtons.index(of: completedBtn)
+        changeFontSize(button: completedBtn)
+        print("DANNY: COMPLETED pressed")
+    }
 }
