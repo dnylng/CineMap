@@ -385,7 +385,7 @@
                                             </constraints>
                                         </view>
                                         <barButtonItem key="rightBarButtonItem" image="Search" id="9gU-Vq-Hbs" userLabel="Search">
-                                            <color key="tintColor" red="0.85882352939999995" green="0.52941176469999995" blue="0.6705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="tintColor" red="0.70980392156862748" green="0.58823529411764708" blue="0.84313725490196079" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="handleSearch:" destination="rch-PP-Atz" id="yIn-nc-nYV"/>
                                             </connections>
@@ -1121,6 +1121,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="JNK-Vi-tRg"/>
-        <segue reference="eFn-5E-r28"/>
+        <segue reference="ROF-Ho-BWg"/>
     </inferredMetricsTieBreakers>
 </document>

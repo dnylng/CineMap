@@ -186,7 +186,7 @@ class InfoVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
             cell.name.text = castArray[indexPath.item].name
             cell.character.text = castArray[indexPath.item].character
             if castArray[indexPath.item].imageUrl == "" {
-                cell.imageView.image = UIImage(named: "placeholder")
+                cell.imageView.image = UIImage(named: "castPlaceholder")
             } else {
                 downloadImage(urlString: castArray[indexPath.item].imageUrl, imageView: cell.imageView, collectionView: collectionView)
             }
