@@ -80,6 +80,7 @@ class TVCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionView
     
     // MARK:- STATUS BUTTON FUNCTIONS
     
+    // Animates changing font sizes when button pressed
     fileprivate func changeFontSize(button: UIButton) {
         UIView.animate(withDuration: 0.75) { 
             for btn in self.statusButtons {
@@ -92,21 +93,42 @@ class TVCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionView
         }
     }
     
+    // Switch selected to currently watching
     @IBAction func handleCurrentlyWatching(_ sender: Any) {
         selectedStatus = statusButtons.index(of: currentlyWatchingBtn)
         changeFontSize(button: currentlyWatchingBtn)
+        
+        UIView.transition(with: tvCollection,
+                          duration: 0.50,
+                          options: .transitionFlipFromTop,
+                          animations: { self.tvCollection.reloadData() })
+        
         print("DANNY: CURRENTLY WATCHING pressed")
     }
     
+    // Switch selected to plan to watch
     @IBAction func handlePlanToWatch(_ sender: Any) {
         selectedStatus = statusButtons.index(of: planToWatchBtn)
         changeFontSize(button: planToWatchBtn)
+        
+        UIView.transition(with: tvCollection,
+                          duration: 0.50,
+                          options: .transitionFlipFromTop,
+                          animations: { self.tvCollection.reloadData() })
+        
         print("DANNY: PLAN TO WATCH pressed")
     }
     
+    // Switch selected to completed
     @IBAction func handleCompleted(_ sender: Any) {
         selectedStatus = statusButtons.index(of: completedBtn)
         changeFontSize(button: completedBtn)
+        
+        UIView.transition(with: tvCollection,
+                          duration: 0.50,
+                          options: .transitionFlipFromTop,
+                          animations: { self.tvCollection.reloadData() })
+        
         print("DANNY: COMPLETED pressed")
     }
 }
