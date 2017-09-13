@@ -12,7 +12,7 @@ import UIKit
 let imageCache = NSCache<NSString, UIImage>()
 
 // Downloads image from url string
-func downloadImage(urlString: String, imageView: UIImageView) {
+func downloadImage(urlString: String, imageView: UIImageView, collectionView: UICollectionView) {
     guard let url = URL(string: urlString) else { return }
     
     // Clear the image for testing
@@ -47,6 +47,8 @@ func downloadImage(urlString: String, imageView: UIImageView) {
             
             // Cache the image
             imageCache.setObject(imageToCache!, forKey: urlString as NSString)
+            
+            collectionView.reloadData()
         }
-        }.resume()
+    }.resume()
 }

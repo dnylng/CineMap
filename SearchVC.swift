@@ -122,7 +122,12 @@ class SearchVC: UIViewController, UITextFieldDelegate, UICollectionViewDataSourc
     // MARK:- COLLECTION FUNCTIONS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("DANNY: selected \(indexPath.item)")
+        let cell = collectionView.cellForItem(at: indexPath) as! TMDBCell
+        selectedCellId = cell.id
+        selectedCellImage = cell.imageView.image
+        selectedCellType = cell.tmdbType
+        
+        performSegue(withIdentifier: "toInfoFromSearch", sender: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -135,10 +140,11 @@ class SearchVC: UIViewController, UITextFieldDelegate, UICollectionViewDataSourc
         
         // Set the TMDB id and image
         cell.id = tmdbObjects[indexPath.item].id
+        
         if tmdbObjects[indexPath.item].imageUrl == "" {
             cell.imageView.image = UIImage(named: "placeholder")
         } else {
-            downloadImage(urlString: tmdbObjects[indexPath.item].imageUrl, imageView: cell.imageView)
+            downloadImage(urlString: tmdbObjects[indexPath.item].imageUrl, imageView: cell.imageView, collectionView: collectionView)
         }
         cell.tmdbType = tmdbObjects[indexPath.item].tmdbType
         cell.title?.text = tmdbObjects[indexPath.item].title

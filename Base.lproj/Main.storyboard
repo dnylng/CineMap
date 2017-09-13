@@ -790,13 +790,13 @@
                                         </subviews>
                                     </stackView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sLM-Px-iVK">
-                                        <rect key="frame" x="16.666666666666671" y="16" width="156.33333333333331" height="236"/>
+                                        <rect key="frame" x="16.666666666666671" y="16" width="157" height="236"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="sLM-Px-iVK" secondAttribute="height" multiplier="2:3" id="dSQ-RM-UW8"/>
                                         </constraints>
                                     </imageView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="290-AZ-er3">
-                                        <rect key="frame" x="177" y="24" width="175.66666666666663" height="228"/>
+                                        <rect key="frame" x="177.66666666666669" y="24" width="174.99999999999994" height="228"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="0.59999999999999998" green="0.90588235289999997" blue="0.77647058820000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" red="1" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -804,7 +804,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMl-jE-1mT">
-                                        <rect key="frame" x="181" y="24" width="167.66666666666663" height="0.0"/>
+                                        <rect key="frame" x="181.66666666666669" y="24" width="166.99999999999994" height="0.0"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
                                         <color key="textColor" red="1" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1038,7 +1038,7 @@
                                             <color key="titleColor" red="0.59999999999999998" green="0.90588235289999997" blue="0.77647058820000003" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="4Wc-wa-DiZ" kind="unwind" unwindAction="unwindToHomeWithSegue:" id="NPX-84-e8Z"/>
+                                            <segue destination="4Wc-wa-DiZ" kind="unwind" identifier="" unwindAction="unwindToHomeWithSegue:" id="NPX-84-e8Z"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1081,6 +1081,7 @@
                         <outlet property="searchCollection" destination="deD-U0-olr" id="OvW-g6-m87"/>
                         <outlet property="searchField" destination="gST-aD-RlV" id="tGc-Ox-nXo"/>
                         <outlet property="widthConstraint" destination="2zr-Iq-aEz" id="KA0-dM-EVW"/>
+                        <segue destination="etN-Pt-p2u" kind="showDetail" identifier="toInfoFromSearch" id="eFn-5E-r28"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o17-Py-x7q" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1120,6 +1121,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="JNK-Vi-tRg"/>
-        <segue reference="ROF-Ho-BWg"/>
+        <segue reference="eFn-5E-r28"/>
     </inferredMetricsTieBreakers>
 </document>
