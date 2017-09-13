@@ -9,9 +9,13 @@
 import Foundation
 import Firebase
 
+// Reference to the database
 let databaseRef = Database.database().reference(fromURL: "https://cinemap-cfddd.firebaseio.com/")
+
+// Reference to te users in the database
 let usersRef = databaseRef.child("users")
 
+// Function that creates a user in the database
 func createUserInDB(uid: String, firstName: String, lastName: String, email: String) {
     // Store these values in the database
     let values = ["firstName": firstName, "lastName": lastName, "email": email]

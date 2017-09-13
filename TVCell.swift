@@ -21,8 +21,9 @@ class TVCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionView
     
     private var statusButtons: [UIButton]!
     private var selectedStatus: Int!
+    private var currentlyWatching: [TMDBObject]!
     
-    var cellId: String {
+    private var cellId: String {
         get {
             if selectedStatus == 0 {
                 return "CurrentCell"
