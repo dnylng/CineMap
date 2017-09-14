@@ -43,8 +43,29 @@ class TVCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionView
     override func awakeFromNib() {
         setupTVCollection()
         setupStatusButtons()
+        setupFontSizes()
         
         // Load data for each array from the Firebase database
+    }
+    
+    fileprivate func setupFontSizes() {
+        // Grab screen width: either iPhone SE, 7, or 7 Plus
+        let screenWidth = UIScreen.main.bounds.width
+        
+        // Adjust font sizes depending on screen
+        if screenWidth <= 320 {
+            currentlyWatchingBtn.titleLabel?.font = currentlyWatchingBtn.titleLabel?.font.withSize(12)
+            planToWatchBtn.titleLabel?.font = planToWatchBtn.titleLabel?.font.withSize(8)
+            completedBtn.titleLabel?.font = completedBtn.titleLabel?.font.withSize(8)
+        } else if screenWidth >= 414 {
+            currentlyWatchingBtn.titleLabel?.font = currentlyWatchingBtn.titleLabel?.font.withSize(16)
+            planToWatchBtn.titleLabel?.font = planToWatchBtn.titleLabel?.font.withSize(12)
+            completedBtn.titleLabel?.font = completedBtn.titleLabel?.font.withSize(12)
+        } else {
+            currentlyWatchingBtn.titleLabel?.font = currentlyWatchingBtn.titleLabel?.font.withSize(14)
+            planToWatchBtn.titleLabel?.font = planToWatchBtn.titleLabel?.font.withSize(10)
+            completedBtn.titleLabel?.font = completedBtn.titleLabel?.font.withSize(10)
+        }
     }
     
     fileprivate func setupTVCollection() {
@@ -62,7 +83,6 @@ class TVCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionView
     fileprivate func setupStatusButtons() {
         statusButtons = [currentlyWatchingBtn, planToWatchBtn, completedBtn]
         selectedStatus = statusButtons.index(of: currentlyWatchingBtn)
-        
     }
     
     // MARK:- COLLECTION FUNCTIONS
@@ -72,7 +92,12 @@ class TVCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionView
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EpisodeCell
+        
+        if cellId == "CurrentCell" {
+            cell.overlayHeight?.constant = cell.frame.height / 2 - 8
+        }
+        
         return cell
     }
     
@@ -91,9 +116,21 @@ class TVCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionView
         UIView.animate(withDuration: 0.75) { 
             for btn in self.statusButtons {
                 if btn == button {
-                    btn.titleLabel!.font = UIFont(name: "AvenirNext-DemiBold", size: 16)
+                    if UIScreen.main.bounds.width <= 320 {
+                        btn.titleLabel!.font = UIFont(name: "AvenirNext-DemiBold", size: 12)
+                    } else if UIScreen.main.bounds.width >= 414 {
+                        btn.titleLabel!.font = UIFont(name: "AvenirNext-DemiBold", size: 16)
+                    } else {
+                        btn.titleLabel!.font = UIFont(name: "AvenirNext-DemiBold", size: 14)
+                    }
                 } else {
-                    btn.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 12)
+                    if UIScreen.main.bounds.width <= 320 {
+                        btn.titleLabel!.font = UIFont(name: "AvenirNext-DemiBold", size: 8)
+                    } else if UIScreen.main.bounds.width >= 414 {
+                        btn.titleLabel!.font = UIFont(name: "AvenirNext-DemiBold", size: 12)
+                    } else {
+                        btn.titleLabel!.font = UIFont(name: "AvenirNext-DemiBold", size: 10)
+                    }
                 }
             }
         }

@@ -117,7 +117,6 @@ class TMDBCollection: UICollectionView, UICollectionViewDataSource, UICollection
 
     // Returns the size of the tvShows, movies, discoveries array
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("DANNY: \(self.tmdbObjects.count)")
         return tmdbObjects.count
     }
     

@@ -27,7 +27,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     // MARK:- VARIABLES
     
     private var viewButtons: [CustomButton]!
-    private var selectedButton: Int!
+    private var selectedButton: Int = 1
+    private var usedButton: Bool!
     
     let homeCell = "HomeCell"
     let tvCell = "TVCell"
@@ -41,7 +42,11 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         resizeViewButtons()
         setupCollection()
         setupViewButtons()
+        addSwipe()
+        collectionView.isScrollEnabled = false
+        
         blurBackground.alpha = 0
+        usedButton = false
     }
     
     // Init the collection view
@@ -56,8 +61,17 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     // Init the viewButtons array with our buttons
     fileprivate func setupViewButtons() {
         viewButtons = [tvButton, homeButton, movieButton]
-        selectedButton = viewButtons.index(of: homeButton)
-        print("DANNY: Selected button is \(selectedButton!)")
+        selectedButton = viewButtons.index(of: homeButton)!
+        print("DANNY: Selected button is \(selectedButton)")
+    }
+    
+    fileprivate func addSwipe() {
+        let directions: [UISwipeGestureRecognizerDirection] = [.right, .left]
+        for direction in directions {
+            let gesture = UISwipeGestureRecognizer(target: self, action: #selector(HomeVC.handleSwipe(sender:)))
+            gesture.direction = direction
+            self.view.addGestureRecognizer(gesture)
+        }
     }
     
     // When view loads up, move to home view
@@ -83,29 +97,63 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     }
     
     @IBAction func handleTV(_ sender: Any) {
+        if selectedButton == 2 {
+            usedButton = true
+        } else {
+            usedButton = false
+        }
         moveSelectedImage(button: tvButton)
 
         selectedButton = 0
         scrollToViewIndex(index: selectedButton)
+        print("DANNY: selected button \(selectedButton)")
     }
     
     @IBAction func handleHome(_ sender: Any) {
+        usedButton = false
         moveSelectedImage(button: homeButton)
         
         selectedButton = 1
         scrollToViewIndex(index: selectedButton)
+        print("DANNY: selected button \(selectedButton)")
     }
     
     @IBAction func handleMovie(_ sender: Any) {
+        if selectedButton == 0 {
+            usedButton = true
+        } else {
+            usedButton = false
+        }
         moveSelectedImage(button: movieButton)
 
         selectedButton = 2
         scrollToViewIndex(index: selectedButton)
+        print("DANNY: selected button \(selectedButton)")
     }
     
     fileprivate func scrollToViewIndex(index: Int) {
         let indexPath = IndexPath(item: index, section: 0)
         collectionView.scrollToItem(at: indexPath, at: [], animated: true)
+    }
+    
+    func handleSwipe(sender: UISwipeGestureRecognizer) {
+        if sender.direction.rawValue == 1 {
+            // If swiped left
+            selectedButton -= 1
+            if selectedButton < 0 {
+                selectedButton += 1
+            }
+            scrollToViewIndex(index: selectedButton)
+            moveSelectedImage(button: viewButtons[selectedButton])
+        } else {
+            // If swiped right
+            selectedButton += 1
+            if selectedButton > 2 {
+                selectedButton -= 1
+            }
+            scrollToViewIndex(index: selectedButton)
+            moveSelectedImage(button: viewButtons[selectedButton])
+        }
     }
     
     // MARK:- COLLECTION FUNCTIONS
@@ -139,28 +187,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
-    
-    // Handles scrolling functionality
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // Get the x position of the current scrollview
-        let x = scrollView.contentOffset.x
-        
-        // If on 1st cell, go to TV; if on 2nd cell, go to home; if on 3rd cell, go to movie
-        switch x {
-        case 0:
-            handleTV(self)
-            
-        case collectionView.frame.width:
-            handleHome(self)
-            
-        case collectionView.frame.width * 2:
-            handleMovie(self)
-            
-        default:
-            break
-        }
-    }
-    
+
     // MARK:- NAVIGATION BAR FUNCTIONS
     
     fileprivate func resizeViewButtons() {

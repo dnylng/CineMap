@@ -16,7 +16,6 @@ class EpisodeCell: UICollectionViewCell {
     @IBOutlet weak var overlayHeight: NSLayoutConstraint!
     @IBOutlet weak var episodeCount: UILabel!
     
-    
     // MARK:- EPISODE COUNT FUNCTIONS
     
     @IBAction func incrementCount(_ sender: Any) {

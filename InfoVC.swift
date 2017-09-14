@@ -26,6 +26,7 @@ class InfoVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     @IBOutlet weak var infoSummary: UITextView!
     @IBOutlet weak var castCollection: UICollectionView!
     @IBOutlet weak var topBilledCast: UILabel!
+    @IBOutlet weak var currentlyWatchingBtn: UIButton!
     
     // MARK:- VARIABLES
     
@@ -138,6 +139,9 @@ class InfoVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                 }
             })
         } else if selectedCellType == .movie {
+            // Remove the currently watching btn
+            currentlyWatchingBtn.removeFromSuperview()
+            
             MovieMDB.movie(TMDB_API_KEY, movieID: selectedCellId, completion: { (clientReturn, movie) in
                 self.infoTitle.text = movie?.title
                 self.infoSummary.text = movie?.overview
@@ -186,16 +190,13 @@ class InfoVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     // MARK:- DATABASE HANDLING FUNCTIONS
     
     @IBAction func planToWatch(_ sender: Any) {
-        
-    }
-    
-    @IBAction func currentlyWatching(_ sender: Any) {
-        
-    }
-    
-    @IBAction func completed(_ sender: Any) {
+        // Check for tv or movie
         if tmdbObject.tmdbType == .tv {
-            let tvRef = tvCompletedRef.child("\(tmdbObject.id)")
+            
+            // Refer to the tv plan to watch child
+            let tvRef = tvPlanToWatchRef.child("\(tmdbObject.id)")
+            
+            // Update that child with this show
             let values = ["imageUrl": tmdbObject.imageUrl]
             tvRef.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
                 if error != nil {
@@ -206,7 +207,62 @@ class InfoVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                 print("DANNY: Added new completed tv show")
             })
         } else {
+            
+            // Refer to the movie plan to watch child
+            let movieRef = moviePlanToWatchRef.child("\(tmdbObject.id)")
+            
+            // Update that child with this movie
+            let values = ["imageUrl": tmdbObject.imageUrl]
+            movieRef.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
+                if error != nil {
+                    print("DANNY: updated completed movie \(error!)")
+                    return
+                }
+                
+                print("DANNY: Added new completed movie")
+            })
+        }
+    }
+    
+    @IBAction func currentlyWatching(_ sender: Any) {
+        // Refer to the tv currently watching child
+        let tvRef = tvCurrentlyWatchingRef.child("\(tmdbObject.id)")
+        
+        // Update that child with this show
+        let values: [String : Any] = ["imageUrl": tmdbObject.imageUrl, "numOfEpisodes": tmdbObject.numOfEpisodes, "onEpisode": tmdbObject.onEpisode]
+        tvRef.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
+            if error != nil {
+                print("DANNY: updated completed tv \(error!)")
+                return
+            }
+            
+            print("DANNY: Added new completed tv show")
+        })
+    }
+    
+    @IBAction func completed(_ sender: Any) {
+        // Check for tv or movie
+        if tmdbObject.tmdbType == .tv {
+            
+            // Refer to the tv completed child
+            let tvRef = tvCompletedRef.child("\(tmdbObject.id)")
+            
+            // Update that child with this show
+            let values = ["imageUrl": tmdbObject.imageUrl]
+            tvRef.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
+                if error != nil {
+                    print("DANNY: updated completed tv \(error!)")
+                    return
+                }
+                
+                print("DANNY: Added new completed tv show")
+            })
+        } else {
+            
+            // Refer to the movie completed child
             let movieRef = movieCompletedRef.child("\(tmdbObject.id)")
+            
+            // Update that child with this movie
             let values = ["imageUrl": tmdbObject.imageUrl]
             movieRef.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
                 if error != nil {
@@ -243,10 +299,21 @@ class InfoVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         return cell
     }
     
-    // Each tv show/movie cell has to keep the aspect ratio of 185/278
+    // Each cast cell has to keep the aspect ratio of 300/450
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGSize(width: castCollection.frame.width / 4.5, height: castCollection.frame.height)
-        return size
+        if selectedCellType == .tv {
+            let ratio: CGFloat = 300/450
+            let width = collectionView.frame.width / 4.08
+            let height = width / ratio
+            let size = CGSize(width: width, height: height)
+            return size
+        } else {
+            let ratio: CGFloat = 300/450
+            let width = collectionView.frame.width / 3.50
+            let height = width / ratio
+            let size = CGSize(width: width, height: height)
+            return size
+        }
     }
     
 }

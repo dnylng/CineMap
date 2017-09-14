@@ -41,6 +41,24 @@ class MovieCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionV
     override func awakeFromNib() {
         setupTVCollection()
         setupStatusButtons()
+        setupFontSizes()
+    }
+    
+    fileprivate func setupFontSizes() {
+        // Grab screen width: either iPhone SE, 7, or 7 Plus
+        let screenWidth = UIScreen.main.bounds.width
+        
+        // Adjust font sizes depending on screen
+        if screenWidth <= 320 {
+            planToWatchBtn.titleLabel?.font = planToWatchBtn.titleLabel?.font.withSize(12)
+            completedBtn.titleLabel?.font = completedBtn.titleLabel?.font.withSize(8)
+        } else if screenWidth >= 414 {
+            planToWatchBtn.titleLabel?.font = planToWatchBtn.titleLabel?.font.withSize(16)
+            completedBtn.titleLabel?.font = completedBtn.titleLabel?.font.withSize(12)
+        } else {
+            planToWatchBtn.titleLabel?.font = planToWatchBtn.titleLabel?.font.withSize(14)
+            completedBtn.titleLabel?.font = completedBtn.titleLabel?.font.withSize(10)
+        }
     }
     
     fileprivate func setupTVCollection() {
@@ -68,9 +86,21 @@ class MovieCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionV
         UIView.animate(withDuration: 0.75) {
             for btn in self.statusButtons {
                 if btn == button {
-                    btn.titleLabel!.font = UIFont(name: "AvenirNext-DemiBold", size: 16)
+                    if UIScreen.main.bounds.width <= 320 {
+                        btn.titleLabel!.font = UIFont(name: "AvenirNext-DemiBold", size: 12)
+                    } else if UIScreen.main.bounds.width >= 414 {
+                        btn.titleLabel!.font = UIFont(name: "AvenirNext-DemiBold", size: 16)
+                    } else {
+                        btn.titleLabel!.font = UIFont(name: "AvenirNext-DemiBold", size: 14)
+                    }
                 } else {
-                    btn.titleLabel!.font = UIFont(name: "AvenirNext-Regular", size: 12)
+                    if UIScreen.main.bounds.width <= 320 {
+                        btn.titleLabel!.font = UIFont(name: "AvenirNext-DemiBold", size: 8)
+                    } else if UIScreen.main.bounds.width >= 414 {
+                        btn.titleLabel!.font = UIFont(name: "AvenirNext-DemiBold", size: 12)
+                    } else {
+                        btn.titleLabel!.font = UIFont(name: "AvenirNext-DemiBold", size: 10)
+                    }
                 }
             }
         }
