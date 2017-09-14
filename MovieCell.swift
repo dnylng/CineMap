@@ -18,10 +18,13 @@ class MovieCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionV
     
     // MARK:- VARIABLES
     
+    // Array of status buttons
     private var statusButtons: [UIButton]!
     private var selectedStatus: Int!
-    private var planToWatchMovies: [TMDBObject]!
-    private var completedMovies: [TMDBObject]!
+    
+    // Array of TMDBObjects that detail the movies the user has selected
+    var planToWatch: [TMDBObject] = []
+    var completed: [TMDBObject] = []
     
     private var cellId: String {
         get {

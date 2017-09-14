@@ -32,6 +32,7 @@ class InfoVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     private let cellId = "CastCell"
     
     private var castArray = [Person]()
+    private var tmdbObject: TMDBObject!
     
     // MARK:- INITIALIZATION
     
@@ -96,6 +97,17 @@ class InfoVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                 self.infoTitle.text = tvShow?.name
                 self.infoSummary.text = tvShow?.overview
                 self.infoSummary.setContentOffset(CGPoint.zero, animated: true)
+                
+                // Create an object for this info page
+                var imageUrl: String!
+                guard let id = tvShow?.id else { return }
+                if tvShow?.poster_path != nil {
+                    imageUrl = ("\(IMAGE_URL_PREFIX)\((tvShow?.poster_path)!)")
+                } else {
+                    imageUrl = ""
+                }
+                guard let numOfEpisodes = tvShow?.number_of_episodes else { return }
+                self.tmdbObject = TMDBObject(id: id, imageUrl: imageUrl, tmdbType: .tv, numOfEpisodes: numOfEpisodes)
             })
             
             // Grab info for the cast
@@ -130,6 +142,17 @@ class InfoVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
                 self.infoTitle.text = movie?.title
                 self.infoSummary.text = movie?.overview
                 self.infoSummary.setContentOffset(CGPoint.zero, animated: false)
+                
+                // Create an object for this info page
+                var imageUrl: String!
+                guard let id = movie?.id else { return }
+                if movie?.poster_path != nil {
+                    imageUrl = ("\(IMAGE_URL_PREFIX)\((movie?.poster_path)!)")
+                } else {
+                    imageUrl = ""
+                }
+                self.tmdbObject = TMDBObject(id: id, imageUrl: imageUrl, tmdbType: .movie)
+                print("DANNY: tmdbObject id \(id), imageUrl \(imageUrl)")
             })
             
             MovieMDB.credits(TMDB_API_KEY, movieID: selectedCellId, completion: { (clientReturn, castDB) in
@@ -163,12 +186,37 @@ class InfoVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     // MARK:- DATABASE HANDLING FUNCTIONS
     
     @IBAction func planToWatch(_ sender: Any) {
+        
     }
     
     @IBAction func currentlyWatching(_ sender: Any) {
+        
     }
     
     @IBAction func completed(_ sender: Any) {
+        if tmdbObject.tmdbType == .tv {
+            let tvRef = tvCompletedRef.child("\(tmdbObject.id)")
+            let values = ["imageUrl": tmdbObject.imageUrl]
+            tvRef.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
+                if error != nil {
+                    print("DANNY: updated completed tv \(error!)")
+                    return
+                }
+                
+                print("DANNY: Added new completed tv show")
+            })
+        } else {
+            let movieRef = movieCompletedRef.child("\(tmdbObject.id)")
+            let values = ["imageUrl": tmdbObject.imageUrl]
+            movieRef.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
+                if error != nil {
+                    print("DANNY: updated completed movie \(error!)")
+                    return
+                }
+                
+                print("DANNY: Added new completed movie")
+            })
+        }
     }
     
     // MARK:- COLLECTION FUNCTIONS

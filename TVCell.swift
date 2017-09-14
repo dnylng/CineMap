@@ -21,7 +21,10 @@ class TVCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionView
     
     private var statusButtons: [UIButton]!
     private var selectedStatus: Int!
-    private var currentlyWatching: [TMDBObject]!
+    
+    private var currentlyWatching: [TMDBObject] = []
+    private var planToWatch: [TMDBObject] = []
+    private var completed: [TMDBObject] = []
     
     private var cellId: String {
         get {
@@ -40,6 +43,8 @@ class TVCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionView
     override func awakeFromNib() {
         setupTVCollection()
         setupStatusButtons()
+        
+        // Load data for each array from the Firebase database
     }
     
     fileprivate func setupTVCollection() {

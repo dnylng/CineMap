@@ -23,6 +23,11 @@ class TMDBObject: NSObject {
     private var _imageUrl: String!
     private var _tmdbType: TMDBType!
     
+    private var _numOfSeasons: Int!
+    private var _numOfEpisodes: Int!
+    private var _onSeason: Int!
+    private var _onEpisode: Int!
+    
     var id: Int {
         get {
             return _id
@@ -63,17 +68,68 @@ class TMDBObject: NSObject {
         }
     }
     
+    var numOfSeasons: Int {
+        get {
+            return _numOfSeasons
+        }
+        
+        set {
+            _numOfSeasons = newValue
+        }
+    }
+    
+    var numOfEpisodes: Int {
+        get {
+            return _numOfEpisodes
+        }
+        
+        set {
+            _numOfEpisodes = newValue
+        }
+    }
+    
+    var onSeason: Int {
+        get {
+            return _onSeason
+        }
+        
+        set {
+            _onSeason = newValue
+        }
+    }
+    
+    var onEpisode: Int {
+        get {
+            return _onEpisode
+        }
+        
+        set {
+            _onEpisode = newValue
+        }
+    }
+    
+    // For home view and movie view
     init(id: Int, imageUrl: String, tmdbType: TMDBType) {
         self._id = id
         self._imageUrl = imageUrl
         self._tmdbType = tmdbType
     }
     
+    // For info view
     init(id: Int, title: String, imageUrl: String, tmdbType: TMDBType) {
         self._id = id
         self._title = title
         self._imageUrl = imageUrl
         self._tmdbType = tmdbType
+    }
+    
+    // For tv view (for now we're doing episode count only, ignoring seasons)
+    init(id: Int, imageUrl: String, tmdbType: TMDBType, numOfEpisodes: Int) {
+        self._id = id
+        self._imageUrl = imageUrl
+        self._tmdbType = tmdbType
+        self._numOfEpisodes = numOfEpisodes
+        self._onEpisode = 0
     }
     
 }
