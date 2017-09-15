@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -679,28 +680,28 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="L8K-BV-qnT">
-                                                                        <rect key="frame" x="12" y="44" width="70" height="62"/>
+                                                                        <rect key="frame" x="16" y="48" width="62" height="54"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3/7" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z8c-Lh-9No">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="70" height="26.333333333333329"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="62" height="23"/>
                                                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                                                                 <color key="textColor" red="1" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="A8j-8J-9g8">
-                                                                                <rect key="frame" x="0.0" y="26.333333333333329" width="70" height="35.666666666666671"/>
+                                                                                <rect key="frame" x="0.0" y="23" width="62" height="31"/>
                                                                                 <subviews>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pWE-Gu-dke">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="31" height="35.666666666666671"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="27" height="31"/>
                                                                                         <state key="normal" backgroundImage="Up Arrow"/>
                                                                                         <connections>
                                                                                             <action selector="incrementCount:" destination="LVj-9B-TpS" eventType="touchUpInside" id="PjK-ub-qLB"/>
                                                                                         </connections>
                                                                                     </button>
                                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ix-3B-HKm">
-                                                                                        <rect key="frame" x="39" y="0.0" width="31" height="35.666666666666671"/>
+                                                                                        <rect key="frame" x="35" y="0.0" width="27" height="31"/>
                                                                                         <constraints>
-                                                                                            <constraint firstAttribute="width" secondItem="6Ix-3B-HKm" secondAttribute="height" multiplier="13:15" id="3qf-3b-gBX"/>
+                                                                                            <constraint firstAttribute="width" secondItem="6Ix-3B-HKm" secondAttribute="height" multiplier="13:15" id="zuj-p9-Z65"/>
                                                                                         </constraints>
                                                                                         <state key="normal" backgroundImage="Down Arrow"/>
                                                                                         <connections>
@@ -716,14 +717,14 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="trailingMargin" secondItem="Uf9-Ac-wm8" secondAttribute="trailing" id="1Ac-L3-ag2"/>
                                                                 <constraint firstAttribute="bottomMargin" secondItem="Uf9-Ac-wm8" secondAttribute="bottom" id="PJP-jp-2GC"/>
-                                                                <constraint firstItem="L8K-BV-qnT" firstAttribute="top" secondItem="Uf9-Ac-wm8" secondAttribute="top" constant="4" id="T2o-AC-Z9z"/>
+                                                                <constraint firstItem="L8K-BV-qnT" firstAttribute="top" secondItem="Uf9-Ac-wm8" secondAttribute="top" constant="8" id="T2o-AC-Z9z"/>
                                                                 <constraint firstItem="b0a-4P-NdP" firstAttribute="leading" secondItem="LVj-9B-TpS" secondAttribute="leadingMargin" id="dKT-lz-lhn"/>
-                                                                <constraint firstItem="L8K-BV-qnT" firstAttribute="trailing" secondItem="Uf9-Ac-wm8" secondAttribute="trailing" constant="-4" id="fUr-1G-FAD"/>
+                                                                <constraint firstItem="L8K-BV-qnT" firstAttribute="trailing" secondItem="Uf9-Ac-wm8" secondAttribute="trailing" constant="-8" id="fUr-1G-FAD"/>
                                                                 <constraint firstItem="b0a-4P-NdP" firstAttribute="top" secondItem="LVj-9B-TpS" secondAttribute="topMargin" id="hy6-zp-ZH1"/>
-                                                                <constraint firstItem="L8K-BV-qnT" firstAttribute="leading" secondItem="Uf9-Ac-wm8" secondAttribute="leading" constant="4" id="opS-Zi-cEf"/>
+                                                                <constraint firstItem="L8K-BV-qnT" firstAttribute="leading" secondItem="Uf9-Ac-wm8" secondAttribute="leading" constant="8" id="opS-Zi-cEf"/>
                                                                 <constraint firstAttribute="bottomMargin" secondItem="b0a-4P-NdP" secondAttribute="bottom" id="p65-nh-K2o"/>
                                                                 <constraint firstAttribute="trailingMargin" secondItem="b0a-4P-NdP" secondAttribute="trailing" id="qmy-5f-rCX"/>
-                                                                <constraint firstItem="L8K-BV-qnT" firstAttribute="bottom" secondItem="Uf9-Ac-wm8" secondAttribute="bottom" constant="-4" id="wz2-gx-fpQ"/>
+                                                                <constraint firstItem="L8K-BV-qnT" firstAttribute="bottom" secondItem="Uf9-Ac-wm8" secondAttribute="bottom" constant="-8" id="wz2-gx-fpQ"/>
                                                                 <constraint firstItem="Uf9-Ac-wm8" firstAttribute="leading" secondItem="LVj-9B-TpS" secondAttribute="leadingMargin" id="y3O-IV-Yz2"/>
                                                             </constraints>
                                                             <connections>
@@ -743,7 +744,10 @@
                                                                         <rect key="frame" x="8" y="8" width="78" height="102"/>
                                                                     </imageView>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6j-ak-YJX">
-                                                                        <rect key="frame" x="22" y="34" width="50" height="50"/>
+                                                                        <rect key="frame" x="21" y="33" width="52" height="52"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="W6j-ak-YJX" secondAttribute="height" multiplier="1:1" id="6gI-yq-l1S"/>
+                                                                        </constraints>
                                                                         <state key="normal" backgroundImage="Start Button"/>
                                                                         <connections>
                                                                             <action selector="moveToCurrentlyWatching:" destination="fTe-4p-fZA" eventType="touchUpInside" id="lVg-Jq-yyb"/>
@@ -754,6 +758,7 @@
                                                             <constraints>
                                                                 <constraint firstItem="cXi-tK-9c0" firstAttribute="top" secondItem="fTe-4p-fZA" secondAttribute="topMargin" id="3Dy-49-0ii"/>
                                                                 <constraint firstAttribute="bottomMargin" secondItem="cXi-tK-9c0" secondAttribute="bottom" id="86N-ux-oqV"/>
+                                                                <constraint firstItem="W6j-ak-YJX" firstAttribute="width" secondItem="cXi-tK-9c0" secondAttribute="width" multiplier="2:3" id="HR2-Xa-IwY"/>
                                                                 <constraint firstItem="W6j-ak-YJX" firstAttribute="centerY" secondItem="fTe-4p-fZA" secondAttribute="centerY" id="Iwh-Xm-d3C"/>
                                                                 <constraint firstItem="cXi-tK-9c0" firstAttribute="leading" secondItem="fTe-4p-fZA" secondAttribute="leadingMargin" id="O0l-eS-Z1N"/>
                                                                 <constraint firstItem="W6j-ak-YJX" firstAttribute="centerX" secondItem="fTe-4p-fZA" secondAttribute="centerX" id="Vvp-Lk-TpE"/>
@@ -866,7 +871,10 @@
                                                                         <rect key="frame" x="8" y="8" width="78" height="102"/>
                                                                     </imageView>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KEq-GC-ctk">
-                                                                        <rect key="frame" x="22" y="34" width="50" height="50"/>
+                                                                        <rect key="frame" x="21" y="33" width="52" height="52"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" secondItem="KEq-GC-ctk" secondAttribute="height" multiplier="1:1" id="yQg-W8-MSy"/>
+                                                                        </constraints>
                                                                         <state key="normal" backgroundImage="Seen Button"/>
                                                                         <connections>
                                                                             <action selector="moveToCompleted:" destination="dxL-Su-ai7" eventType="touchUpInside" id="jgY-Ru-UaM"/>
@@ -877,6 +885,7 @@
                                                             <constraints>
                                                                 <constraint firstItem="KEq-GC-ctk" firstAttribute="centerX" secondItem="dxL-Su-ai7" secondAttribute="centerX" id="7rd-03-Leu"/>
                                                                 <constraint firstAttribute="bottomMargin" secondItem="70o-S4-Hjy" secondAttribute="bottom" id="Jvb-7x-tXa"/>
+                                                                <constraint firstItem="KEq-GC-ctk" firstAttribute="width" secondItem="70o-S4-Hjy" secondAttribute="width" multiplier="2:3" id="Pcl-gK-8R2"/>
                                                                 <constraint firstItem="70o-S4-Hjy" firstAttribute="top" secondItem="dxL-Su-ai7" secondAttribute="topMargin" id="YFY-eJ-LZz"/>
                                                                 <constraint firstItem="KEq-GC-ctk" firstAttribute="centerY" secondItem="dxL-Su-ai7" secondAttribute="centerY" id="fK3-cQ-Wbf"/>
                                                                 <constraint firstAttribute="trailingMargin" secondItem="70o-S4-Hjy" secondAttribute="trailing" id="g3i-p8-Zjv"/>
@@ -962,7 +971,7 @@
                                     <constraint firstAttribute="height" constant="30" id="i4n-we-O7g"/>
                                 </constraints>
                             </stackView>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="icJ-Fc-F51">
+                            <visualEffectView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="icJ-Fc-F51">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="YAf-Vs-Igd">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
@@ -1105,13 +1114,13 @@
                                         </subviews>
                                     </stackView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sLM-Px-iVK">
-                                        <rect key="frame" x="16.666666666666671" y="16" width="157" height="236"/>
+                                        <rect key="frame" x="16.666666666666671" y="16" width="156.66666666666663" height="236"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="sLM-Px-iVK" secondAttribute="height" multiplier="2:3" id="dSQ-RM-UW8"/>
                                         </constraints>
                                     </imageView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="290-AZ-er3">
-                                        <rect key="frame" x="177.66666666666669" y="24" width="174.99999999999994" height="228"/>
+                                        <rect key="frame" x="177.33333333333334" y="24" width="175.33333333333329" height="228"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="0.59999999999999998" green="0.90588235289999997" blue="0.77647058820000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" red="1" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1119,7 +1128,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMl-jE-1mT">
-                                        <rect key="frame" x="181.66666666666669" y="24" width="166.99999999999994" height="0.0"/>
+                                        <rect key="frame" x="181.33333333333334" y="24" width="167.33333333333329" height="0.0"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
                                         <color key="textColor" red="1" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
