@@ -971,7 +971,7 @@
                                     <constraint firstAttribute="height" constant="30" id="i4n-we-O7g"/>
                                 </constraints>
                             </stackView>
-                            <visualEffectView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="icJ-Fc-F51">
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="icJ-Fc-F51">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="YAf-Vs-Igd">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
@@ -1114,13 +1114,13 @@
                                         </subviews>
                                     </stackView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sLM-Px-iVK">
-                                        <rect key="frame" x="16.666666666666671" y="16" width="156.66666666666663" height="236"/>
+                                        <rect key="frame" x="16.666666666666671" y="16" width="156.33333333333331" height="236"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="sLM-Px-iVK" secondAttribute="height" multiplier="2:3" id="dSQ-RM-UW8"/>
                                         </constraints>
                                     </imageView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="290-AZ-er3">
-                                        <rect key="frame" x="177.33333333333334" y="24" width="175.33333333333329" height="228"/>
+                                        <rect key="frame" x="177" y="24" width="175.66666666666663" height="228"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="0.59999999999999998" green="0.90588235289999997" blue="0.77647058820000003" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" red="1" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -1128,7 +1128,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hMl-jE-1mT">
-                                        <rect key="frame" x="181.33333333333334" y="24" width="167.33333333333329" height="0.0"/>
+                                        <rect key="frame" x="181" y="24" width="167.66666666666663" height="0.0"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="18"/>
                                         <color key="textColor" red="1" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
