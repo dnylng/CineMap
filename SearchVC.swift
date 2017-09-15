@@ -177,31 +177,62 @@ class SearchVC: UIViewController, UITextFieldDelegate, UICollectionViewDataSourc
     
     // Init the search page with top rated items
     fileprivate func searchTopRated() {
-        TVMDB.toprated(TMDB_API_KEY, page: pageNum, language: language) { (clientReturn, tvDB) in
-            
-            // Grab each obj in the tv database
-            for obj in tvDB! {
+        
+        if arc4random_uniform(2) == 0 {
+            TVMDB.toprated(TMDB_API_KEY, page: pageNum, language: language) { (clientReturn, tvDB) in
                 
-                self.pageLimit = (clientReturn.pageResults?.total_pages)!
-                
-                // Set up vars
-                var imageUrl: String!
-                if obj.poster_path != nil {
-                    imageUrl = ("\(IMAGE_URL_PREFIX)\(obj.poster_path!)")
-                } else {
-                    imageUrl = ""
+                // Grab each obj in the tv database
+                for obj in tvDB! {
+                    
+                    self.pageLimit = (clientReturn.pageResults?.total_pages)!
+                    
+                    // Set up vars
+                    var imageUrl: String!
+                    if obj.poster_path != nil {
+                        imageUrl = ("\(IMAGE_URL_PREFIX)\(obj.poster_path!)")
+                    } else {
+                        imageUrl = ""
+                    }
+                    
+                    guard let id = obj.id else { return }
+                    guard let title = obj.name else { return }
+                    
+                    // Create a TMDBObject out of the array info
+                    let tvShow = TMDBObject(id: id, title: title, imageUrl: imageUrl, tmdbType: .tv)
+                    print("DANNY: from search \(tvShow.imageUrl)")
+                    print("DANNY: from search \(tvShow.id)")
+                    
+                    self.tmdbObjects.append(tvShow)
+                    self.searchCollection.reloadData()
                 }
+            }
+        } else {
+            MovieMDB.toprated(TMDB_API_KEY, language: language, page: pageNum) { (clientReturn, movieDB) in
                 
-                guard let id = obj.id else { return }
-                guard let title = obj.name else { return }
-                
-                // Create a TMDBObject out of the array info
-                let tvShow = TMDBObject(id: id, title: title, imageUrl: imageUrl, tmdbType: .tv)
-                print("DANNY: from search \(tvShow.imageUrl)")
-                print("DANNY: from search \(tvShow.id)")
-                
-                self.tmdbObjects.append(tvShow)
-                self.searchCollection.reloadData()
+                // Grab each obj in the tv database
+                for obj in movieDB! {
+                    
+                    self.pageLimit = (clientReturn.pageResults?.total_pages)!
+                    
+                    // Set up vars
+                    var imageUrl: String!
+                    if obj.poster_path != nil {
+                        imageUrl = ("\(IMAGE_URL_PREFIX)\(obj.poster_path!)")
+                    } else {
+                        imageUrl = ""
+                    }
+                    
+                    guard let id = obj.id else { return }
+                    guard let title = obj.title else { return }
+                    
+                    // Create a TMDBObject out of the array info
+                    let movie = TMDBObject(id: id, title: title, imageUrl: imageUrl, tmdbType: .movie)
+                    print("DANNY: from search \(movie.imageUrl)")
+                    print("DANNY: from search \(movie.id)")
+                    
+                    self.tmdbObjects.append(movie)
+                    self.searchCollection.reloadData()
+                }
             }
         }
     }
