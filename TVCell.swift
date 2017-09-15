@@ -80,9 +80,9 @@ class TVCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionView
             let enumerator = snapshot.children
             while let child = enumerator.nextObject() as? DataSnapshot {
                 let child = child.value as! [String:Any]
-                let id = child["id"] as! Int
-                let imageUrl = child["imageUrl"] as! String
-                let numOfEpisodes = child["numOfEpisodes"] as! Int
+                guard let id = child["id"] as? Int else { return }
+                guard let imageUrl = child["imageUrl"] as? String else { return }
+                guard let numOfEpisodes = child["numOfEpisodes"] as? Int else { return }
                 let tmdbObject = TMDBObject(id: id, imageUrl: imageUrl, tmdbType: .tv, numOfEpisodes: numOfEpisodes)
                 tempArray.append(tmdbObject)
             }
@@ -100,8 +100,8 @@ class TVCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionView
             let enumerator = snapshot.children
             while let child = enumerator.nextObject() as? DataSnapshot {
                 let child = child.value as! [String:Any]
-                let id = child["id"] as! Int
-                let imageUrl = child["imageUrl"] as! String
+                guard let id = child["id"] as? Int else { return }
+                guard let imageUrl = child["imageUrl"] as? String else { return }
                 let tmdbObject = TMDBObject(id: id, imageUrl: imageUrl, tmdbType: .tv)
                 tempArray.append(tmdbObject)
             }
