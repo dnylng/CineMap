@@ -58,7 +58,7 @@ func updateCurrentlyWatchingDB(tmdbObject: TMDBObject) {
             return
         }
         
-        print("DANNY: Added new completed tv show")
+        print("DANNY: Added new currently watching tv show")
     })
 }
 
@@ -77,7 +77,7 @@ func updatePlanToWatch(tmdbObject: TMDBObject) {
                 return
             }
             
-            print("DANNY: Added new completed tv show")
+            print("DANNY: Added new plan to watch tv show")
         })
     } else {
         
@@ -92,7 +92,7 @@ func updatePlanToWatch(tmdbObject: TMDBObject) {
                 return
             }
             
-            print("DANNY: Added new completed movie")
+            print("DANNY: Added new plan to watch movie")
         })
     }
 }

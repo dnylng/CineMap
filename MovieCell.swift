@@ -49,7 +49,7 @@ class MovieCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionV
     // Populate the movie arrays with data from Firebase database
     fileprivate func setupArrays() {
         moviePlanToWatchRef.observe(.value, with: { snapshot in
-            print("DANNY: snapshot's children count \(snapshot.childrenCount)")
+            print("DANNY: movie snapshot's children count \(snapshot.childrenCount)")
             
             var tempArray: [TMDBObject] = []
             
@@ -57,8 +57,8 @@ class MovieCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionV
             let enumerator = snapshot.children
             while let child = enumerator.nextObject() as? DataSnapshot {
                 let child = child.value as! [String:Any]
-                let id = child["id"] as! Int
-                let imageUrl = child["imageUrl"] as! String
+                guard let id = child["id"] as? Int else { return }
+                guard let imageUrl = child["imageUrl"] as? String else { return }
                 let tmdbObject = TMDBObject(id: id, imageUrl: imageUrl, tmdbType: .movie)
                 tempArray.append(tmdbObject)
             }

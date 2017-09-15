@@ -132,4 +132,12 @@ class TMDBObject: NSObject {
         self._onEpisode = 0
     }
     
+    init(id: Int, imageUrl: String, tmdbType: TMDBType, numOfEpisodes: Int, onEpisode: Int) {
+        self._id = id
+        self._imageUrl = imageUrl
+        self._tmdbType = tmdbType
+        self._numOfEpisodes = numOfEpisodes
+        self._onEpisode = onEpisode
+    }
+    
 }

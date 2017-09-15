@@ -48,6 +48,18 @@ class InfoVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         setupInfo()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        clearImageCache()
+    }
+    
+    // Clear image cache and cast array
+    fileprivate func clearImageCache() {
+        for obj in castArray {
+            imageCache.removeObject(forKey: obj.imageUrl as NSString)
+        }
+        castArray.removeAll()
+    }
+    
     // Sets the delegates
     fileprivate func setupCollection() {
         castCollection.dataSource = self
