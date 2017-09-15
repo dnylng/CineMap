@@ -70,7 +70,7 @@ func updatePlanToWatch(tmdbObject: TMDBObject) {
         let tvRef = tvPlanToWatchRef.child("\(tmdbObject.id)")
         
         // Update that child with this show
-        let values: [String : Any] = ["id": tmdbObject.id, "imageUrl": tmdbObject.imageUrl]
+        let values: [String : Any] = ["id": tmdbObject.id, "imageUrl": tmdbObject.imageUrl, "numOfEpisodes": tmdbObject.numOfEpisodes]
         tvRef.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
             if error != nil {
                 print("DANNY: updated completed tv \(error!)")

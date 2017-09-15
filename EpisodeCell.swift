@@ -25,7 +25,7 @@ class EpisodeCell: UICollectionViewCell {
     @IBAction func incrementCount(_ sender: Any) {
         tmdbObject.onEpisode += 1
         if tmdbObject.onEpisode > tmdbObject.numOfEpisodes - 1 {
-            moveMovieToCompleted(self)
+            moveToCompleted(self)
         } else {
             updateCurrentlyWatchingDB(tmdbObject: tmdbObject)
             print("DANNY: \(tmdbObject.id) ep count is now \(tmdbObject.onEpisode)")
@@ -43,13 +43,8 @@ class EpisodeCell: UICollectionViewCell {
         }
     }
 
-    @IBAction func moveMovieToCompleted(_ sender: Any) {
+    @IBAction func moveToCompleted(_ sender: Any) {
         if tmdbObject.tmdbType == .tv {
-            //tvCurrentlyWatchingRef.child("\(tmdbObject.id)").removeAllObservers()
-            //tvCurrentlyWatchingRef.child("\(tmdbObject.id)").child("\(tmdbObject.id)").removeAllObservers()
-            //tvCurrentlyWatchingRef.child("\(tmdbObject.id)").child("imageUrl").removeAllObservers()
-            //tvCurrentlyWatchingRef.child("\(tmdbObject.id)").child("numOfEpisodes").removeAllObservers()
-
             tvCurrentlyWatchingRef.child("\(tmdbObject.id)").removeValue()
             updateCompletedDB(tmdbObject: tmdbObject)
             print("DANNY: episode cell moved to tv completed \(tmdbObject.id)")
@@ -58,6 +53,11 @@ class EpisodeCell: UICollectionViewCell {
             updateCompletedDB(tmdbObject: tmdbObject)
             print("DANNY: episode cell moved to movie completed \(tmdbObject.id)")
         }
+    }
+    
+    @IBAction func moveToCurrentlyWatching(_ sender: Any) {
+        tvPlanToWatchRef.child("\(tmdbObject.id)").removeValue()
+        updateCurrentlyWatchingDB(tmdbObject: tmdbObject)
     }
     
 }

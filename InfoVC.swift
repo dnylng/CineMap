@@ -202,6 +202,7 @@ class InfoVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     // MARK:- DATABASE HANDLING FUNCTIONS
     
     @IBAction func planToWatch(_ sender: Any) {
+        print("DANNY: from plan to watch \(tmdbObject.numOfEpisodes)")
         updatePlanToWatch(tmdbObject: tmdbObject)
         
         performSegue(withIdentifier: "unwindToHome", sender: self)

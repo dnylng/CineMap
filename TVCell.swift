@@ -82,7 +82,8 @@ class TVCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionView
                 let child = child.value as! [String:Any]
                 let id = child["id"] as! Int
                 let imageUrl = child["imageUrl"] as! String
-                let tmdbObject = TMDBObject(id: id, imageUrl: imageUrl, tmdbType: .tv)
+                let numOfEpisodes = child["numOfEpisodes"] as! Int
+                let tmdbObject = TMDBObject(id: id, imageUrl: imageUrl, tmdbType: .tv, numOfEpisodes: numOfEpisodes)
                 tempArray.append(tmdbObject)
             }
             
