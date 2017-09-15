@@ -45,3 +45,89 @@ func createUserInDB(uid: String, firstName: String, lastName: String, email: Str
         print("DANNY: Created new user in the DB")
     })
 }
+
+func updateCurrentlyWatchingDB(tmdbObject: TMDBObject) {
+    // Refer to the tv currently watching child
+    let tvRef = tvCurrentlyWatchingRef.child("\(tmdbObject.id)")
+    
+    // Update that child with this show
+    let values: [String : Any] = ["id": tmdbObject.id, "imageUrl": tmdbObject.imageUrl, "numOfEpisodes": tmdbObject.numOfEpisodes, "onEpisode": tmdbObject.onEpisode]
+    tvRef.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
+        if error != nil {
+            print("DANNY: updated completed tv \(error!)")
+            return
+        }
+        
+        print("DANNY: Added new completed tv show")
+    })
+}
+
+func updatePlanToWatch(tmdbObject: TMDBObject) {
+    // Check for tv or movie
+    if tmdbObject.tmdbType == .tv {
+        
+        // Refer to the tv plan to watch child
+        let tvRef = tvPlanToWatchRef.child("\(tmdbObject.id)")
+        
+        // Update that child with this show
+        let values: [String : Any] = ["id": tmdbObject.id, "imageUrl": tmdbObject.imageUrl]
+        tvRef.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
+            if error != nil {
+                print("DANNY: updated completed tv \(error!)")
+                return
+            }
+            
+            print("DANNY: Added new completed tv show")
+        })
+    } else {
+        
+        // Refer to the movie plan to watch child
+        let movieRef = moviePlanToWatchRef.child("\(tmdbObject.id)")
+        
+        // Update that child with this movie
+        let values: [String : Any] = ["id": tmdbObject.id, "imageUrl": tmdbObject.imageUrl]
+        movieRef.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
+            if error != nil {
+                print("DANNY: updated completed movie \(error!)")
+                return
+            }
+            
+            print("DANNY: Added new completed movie")
+        })
+    }
+}
+
+func updateCompletedDB(tmdbObject: TMDBObject) {
+    // Check for tv or movie
+    if tmdbObject.tmdbType == .tv {
+        
+        // Refer to the tv completed child
+        let tvRef = tvCompletedRef.child("\(tmdbObject.id)")
+        
+        // Update that child with this show
+        let values: [String : Any] = ["id": tmdbObject.id, "imageUrl": tmdbObject.imageUrl]
+        tvRef.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
+            if error != nil {
+                print("DANNY: updated completed tv \(error!)")
+                return
+            }
+            
+            print("DANNY: Added new completed tv show")
+        })
+    } else {
+        
+        // Refer to the movie completed child
+        let movieRef = movieCompletedRef.child("\(tmdbObject.id)")
+        
+        // Update that child with this movie
+        let values: [String : Any] = ["id": tmdbObject.id, "imageUrl": tmdbObject.imageUrl]
+        movieRef.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
+            if error != nil {
+                print("DANNY: updated completed movie \(error!)")
+                return
+            }
+            
+            print("DANNY: Added new completed movie")
+        })
+    }
+}

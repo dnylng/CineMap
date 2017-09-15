@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class MovieCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
@@ -42,6 +43,48 @@ class MovieCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionV
         setupTVCollection()
         setupStatusButtons()
         setupFontSizes()
+        setupArrays()
+    }
+    
+    // Populate the movie arrays with data from Firebase database
+    fileprivate func setupArrays() {
+        moviePlanToWatchRef.observe(.value, with: { snapshot in
+            print("DANNY: snapshot's children count \(snapshot.childrenCount)")
+            
+            var tempArray: [TMDBObject] = []
+            
+            // Iterate through the snapshot's children to get imageUrls
+            let enumerator = snapshot.children
+            while let child = enumerator.nextObject() as? DataSnapshot {
+                let child = child.value as! [String:Any]
+                let id = child["id"] as! Int
+                let imageUrl = child["imageUrl"] as! String
+                let tmdbObject = TMDBObject(id: id, imageUrl: imageUrl, tmdbType: .movie)
+                tempArray.append(tmdbObject)
+            }
+            
+            self.planToWatch = tempArray
+            self.movieCollection.reloadData()
+        })
+        
+        movieCompletedRef.observe(.value, with: { snapshot in
+            print("DANNY: snapshot's children count \(snapshot.childrenCount)")
+            
+            var tempArray: [TMDBObject] = []
+            
+            // Iterate through the snapshot's children to get imageUrls
+            let enumerator = snapshot.children
+            while let child = enumerator.nextObject() as? DataSnapshot {
+                let child = child.value as! [String:Any]
+                let id = child["id"] as! Int
+                let imageUrl = child["imageUrl"] as! String
+                let tmdbObject = TMDBObject(id: id, imageUrl: imageUrl, tmdbType: .movie)
+                tempArray.append(tmdbObject)
+            }
+            
+            self.completed = tempArray
+            self.movieCollection.reloadData()
+        })
     }
     
     fileprivate func setupFontSizes() {
@@ -135,17 +178,53 @@ class MovieCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionV
     // MARK:- COLLECTION FUNCTIONS
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        if cellId == "PlanCell" {
+            return planToWatch.count
+        } else {
+            return completed.count
+        }
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! EpisodeCell
+        
+        // Set the urlString depending on which array
+        var urlString: String!
+        if cellId == "PlanCell" {
+            urlString = planToWatch[indexPath.item].imageUrl
+            cell.tmdbObject = planToWatch[indexPath.item]
+        } else {
+            urlString = completed[indexPath.item].imageUrl
+            cell.tmdbObject = completed[indexPath.item]
+        }
+        
+        downloadImage(urlString: urlString, imageView: cell.imageView, collectionView: collectionView)
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let ratio: CGFloat = 185/278
-        let width = collectionView.frame.width / 3
+        
+        var width: CGFloat!
+        if cellId == "PlanCell" {
+            if planToWatch.count > 27 {
+                width = collectionView.frame.width / 4
+            } else if planToWatch.count > 6 && planToWatch.count <= 27 {
+                width = collectionView.frame.width / 3
+            } else {
+                width = collectionView.frame.width / 2
+            }
+        } else {
+            if completed.count > 27 {
+                width = collectionView.frame.width / 4
+            } else if completed.count > 6 && completed.count <= 27 {
+                width = collectionView.frame.width / 3
+            } else {
+                width = collectionView.frame.width / 2
+            }
+        }
+        
         let height = width / ratio
         let size = CGSize(width: width, height: height)
         return size

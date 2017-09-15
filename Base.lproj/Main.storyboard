@@ -865,6 +865,9 @@
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KEq-GC-ctk">
                                                                         <rect key="frame" x="22" y="34" width="50" height="50"/>
                                                                         <state key="normal" backgroundImage="Seen Button"/>
+                                                                        <connections>
+                                                                            <action selector="moveMovieToCompleted:" destination="dxL-Su-ai7" eventType="touchUpInside" id="0RV-vK-4oI"/>
+                                                                        </connections>
                                                                     </button>
                                                                 </subviews>
                                                             </view>
@@ -1237,6 +1240,7 @@
                         <outlet property="infoTitle" destination="hMl-jE-1mT" id="ttN-Hg-iGK"/>
                         <outlet property="topBilledCast" destination="9lb-ZX-948" id="b9O-eg-7MB"/>
                         <outlet property="widthConstraint" destination="Ld6-Bw-Yz0" id="V3F-tl-geI"/>
+                        <segue destination="4Wc-wa-DiZ" kind="unwind" identifier="unwindToHome" unwindAction="unwindToHomeWithSegue:" id="IJp-sn-Uez"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LZI-Za-6nL" userLabel="First Responder" sceneMemberID="firstResponder"/>

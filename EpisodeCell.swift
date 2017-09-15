@@ -16,6 +16,10 @@ class EpisodeCell: UICollectionViewCell {
     @IBOutlet weak var overlayHeight: NSLayoutConstraint!
     @IBOutlet weak var episodeCount: UILabel!
     
+    // MARK:- VARIABLES
+    
+    var tmdbObject: TMDBObject!
+    
     // MARK:- EPISODE COUNT FUNCTIONS
     
     @IBAction func incrementCount(_ sender: Any) {
@@ -25,4 +29,11 @@ class EpisodeCell: UICollectionViewCell {
     @IBAction func decrementCount(_ sender: Any) {
         
     }
+
+    @IBAction func moveMovieToCompleted(_ sender: Any) {
+        moviePlanToWatchRef.child("\(tmdbObject.id)").removeValue()
+        updateCompletedDB(tmdbObject: tmdbObject)
+        print("DANNY: episode cell moved to completed \(tmdbObject.id)")
+    }
+    
 }

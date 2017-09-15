@@ -190,89 +190,22 @@ class InfoVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     // MARK:- DATABASE HANDLING FUNCTIONS
     
     @IBAction func planToWatch(_ sender: Any) {
-        // Check for tv or movie
-        if tmdbObject.tmdbType == .tv {
-            
-            // Refer to the tv plan to watch child
-            let tvRef = tvPlanToWatchRef.child("\(tmdbObject.id)")
-            
-            // Update that child with this show
-            let values = ["imageUrl": tmdbObject.imageUrl]
-            tvRef.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
-                if error != nil {
-                    print("DANNY: updated completed tv \(error!)")
-                    return
-                }
-                
-                print("DANNY: Added new completed tv show")
-            })
-        } else {
-            
-            // Refer to the movie plan to watch child
-            let movieRef = moviePlanToWatchRef.child("\(tmdbObject.id)")
-            
-            // Update that child with this movie
-            let values = ["imageUrl": tmdbObject.imageUrl]
-            movieRef.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
-                if error != nil {
-                    print("DANNY: updated completed movie \(error!)")
-                    return
-                }
-                
-                print("DANNY: Added new completed movie")
-            })
-        }
+        updatePlanToWatch(tmdbObject: tmdbObject)
+        
+        performSegue(withIdentifier: "unwindToHome", sender: self)
     }
     
     @IBAction func currentlyWatching(_ sender: Any) {
-        // Refer to the tv currently watching child
-        let tvRef = tvCurrentlyWatchingRef.child("\(tmdbObject.id)")
+        updateCurrentlyWatchingDB(tmdbObject: tmdbObject)
         
-        // Update that child with this show
-        let values: [String : Any] = ["imageUrl": tmdbObject.imageUrl, "numOfEpisodes": tmdbObject.numOfEpisodes, "onEpisode": tmdbObject.onEpisode]
-        tvRef.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
-            if error != nil {
-                print("DANNY: updated completed tv \(error!)")
-                return
-            }
-            
-            print("DANNY: Added new completed tv show")
-        })
+        performSegue(withIdentifier: "unwindToHome", sender: self)
     }
     
     @IBAction func completed(_ sender: Any) {
-        // Check for tv or movie
-        if tmdbObject.tmdbType == .tv {
-            
-            // Refer to the tv completed child
-            let tvRef = tvCompletedRef.child("\(tmdbObject.id)")
-            
-            // Update that child with this show
-            let values = ["imageUrl": tmdbObject.imageUrl]
-            tvRef.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
-                if error != nil {
-                    print("DANNY: updated completed tv \(error!)")
-                    return
-                }
-                
-                print("DANNY: Added new completed tv show")
-            })
-        } else {
-            
-            // Refer to the movie completed child
-            let movieRef = movieCompletedRef.child("\(tmdbObject.id)")
-            
-            // Update that child with this movie
-            let values = ["imageUrl": tmdbObject.imageUrl]
-            movieRef.updateChildValues(values, withCompletionBlock: { (error, databaseRef) in
-                if error != nil {
-                    print("DANNY: updated completed movie \(error!)")
-                    return
-                }
-                
-                print("DANNY: Added new completed movie")
-            })
-        }
+        print("DANNY: BOOP")
+        updateCompletedDB(tmdbObject: tmdbObject)
+        
+        performSegue(withIdentifier: "unwindToHome", sender: self)
     }
     
     // MARK:- COLLECTION FUNCTIONS
